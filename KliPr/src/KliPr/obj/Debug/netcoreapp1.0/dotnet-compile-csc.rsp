@@ -189,4 +189,5 @@
 -resource:"C:\Users\swank\Desktop\bachelor\KliPr\src\KliPr\obj\Debug\netcoreapp1.0\KliPrdotnet-compile.deps.json",KliPr.deps.json
 "C:\Users\swank\Desktop\bachelor\KliPr\src\KliPr\Program.cs"
 "C:\Users\swank\Desktop\bachelor\KliPr\src\KliPr\Startup.cs"
+"C:\Users\swank\Desktop\bachelor\KliPr\src\KliPr\Controllers\ForskerController.cs"
 "C:\Users\swank\Desktop\bachelor\KliPr\src\KliPr\Controllers\HomeController.cs"

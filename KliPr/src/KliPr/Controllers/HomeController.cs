@@ -13,7 +13,7 @@ namespace KliPr.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult Aboutgg()
         {
             ViewData["Message"] = "Your application description page.";
 
@@ -28,6 +28,11 @@ namespace KliPr.Controllers
         }
 
         public IActionResult Error()
+        {
+            return View();
+        }
+
+        public IActionResult Loginxx()
         {
             return View();
         }
