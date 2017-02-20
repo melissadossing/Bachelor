@@ -21,6 +21,14 @@ namespace KliPr.Controllers
         {
             return View();
         }
+        public IActionResult Delete()
+        {
+            return View();
+        }
+        public IActionResult SetActive()
+        {
+            return View();
+        }
         public IActionResult AddQuestion()
         {
             return View();

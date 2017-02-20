@@ -18,9 +18,18 @@
     padding: 20px;
 }
 
+#thefooter{
+    position: fixed;
+    bottom: 0;
+}
+
 .no-padding {
     padding-right: 0 !important;
     padding-left: 0 !important;
     margin-right: 0;
   margin-left: 0;
+}
+
+.maxwidth{
+    max-width: 200px;
 }
