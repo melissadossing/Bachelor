@@ -1,3 +1,26 @@
 ﻿body {
     background-color: #8BB4CC;
 }
+
+.topmargin{
+    margin-top:3%;
+}
+
+.topmargin2{
+    margin-top:8%;
+}
+
+#questionillu{
+    background-color: aliceblue;
+    min-height:50px;
+    border-radius: 10px;
+    border: 2px solid #73AD21;
+    padding: 20px;
+}
+
+.no-padding {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    margin-right: 0;
+  margin-left: 0;
+}

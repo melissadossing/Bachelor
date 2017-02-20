@@ -12,5 +12,18 @@ namespace KliPr.Controllers
         {
             return View();
         }
+
+        public IActionResult Dashboard()
+        {
+            return View();
+        }
+        public IActionResult Create()
+        {
+            return View();
+        }
+        public IActionResult AddQuestion()
+        {
+            return View();
+        }
     }
 }
