@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Reflection;
 
 namespace KliPr.Controllers
 {
@@ -17,10 +16,20 @@ namespace KliPr.Controllers
         {
             return View();
         }
+
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Create(int dummy)
+        {
+            int value = Request.Form.Count;
+
+            return View();
+        }
+
         public IActionResult Delete()
         {
             return View();
@@ -31,7 +40,9 @@ namespace KliPr.Controllers
         }
         public IActionResult AddQuestion()
         {
-            return View();
+            int x = 0;
+            int y = x + 199;
+            return View("Create");
         }
     }
 }
