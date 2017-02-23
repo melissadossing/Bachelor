@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Reflection;
+using KliPr.ViewModels;
 
 namespace KliPr.Controllers
 {
@@ -23,9 +24,10 @@ namespace KliPr.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(int dummy)
+        public IActionResult Create(CreateQuestionnaireViewModel vm)
         {
-            int value = Request.Form.Count;
+            int x = 7;
+            int y = x + 55;
 
             return View();
         }
