@@ -1,14 +1,16 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace KliPr.ViewModels
+namespace KliPr.Models
 {
-    public class CreateQuestionnaireViewModel
+    public class Questionnaire
     {
+        public ObjectId Id { get; set; }
         public string name { get; set; }
-
+        public bool active { get; set; }
 
         public string q0name { get; set; }
         public string q0t0a0 { get; set; }
@@ -60,5 +62,4 @@ namespace KliPr.ViewModels
         public int q4t1a1 { get; set; }
         public bool needanswer4 { get; set; }
     }
-
 }

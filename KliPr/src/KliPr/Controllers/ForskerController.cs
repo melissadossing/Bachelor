@@ -1,15 +1,16 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Reflection;
-using KliPr.ViewModels;
-using MongoDB.Driver;
-using MongoDB.Bson;
+﻿using Microsoft.AspNetCore.Mvc;
+using KliPr.Models;
 
 namespace KliPr.Controllers
 {
     public class ForskerController : Controller
     {
+        DataAccess objds;
+
+        public ForskerController(DataAccess d)
+        {
+            objds = d;
+        }
         public IActionResult Login()
         {
             return View();
@@ -26,27 +27,9 @@ namespace KliPr.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(CreateQuestionnaireViewModel vm)
+        public IActionResult Create(Questionnaire q)
         {
-            var client = new MongoClient();
-            var database = client.GetDatabase("foo");
-            var collection = database.GetCollection<BsonDocument>("bar");
-
-            var document = new BsonDocument{
-                { "name", "MongoDB" },
-                { "type", "Database" },
-                { "count", 1 },
-                { "info", new BsonDocument
-                    {
-                        { "x", 203 },
-                        { "y", 102 }
-                    }}
-            };
-
-            collection.InsertOne(document);
-
-
-
+            objds.Create(q);
             return View();
         }
 
