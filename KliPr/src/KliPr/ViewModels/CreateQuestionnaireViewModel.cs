@@ -19,8 +19,6 @@ namespace KliPr.ViewModels
         public int q0t1a1 { get; set; }
         public bool needanswer0 { get; set; }
 
-        public string test { get; set; }
-
 
         public string q1name { get; set; }
         public string q1t0a0 { get; set; }
