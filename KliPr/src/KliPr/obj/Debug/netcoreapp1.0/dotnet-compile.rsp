@@ -1,5 +1,5 @@
---temp-output:C:\Users\swank\Desktop\KliPr\KliPr\src\KliPr\obj\Debug\netcoreapp1.0\
---out:C:\Users\swank\Desktop\KliPr\KliPr\src\KliPr\bin\Debug\netcoreapp1.0\KliPr.dll
+--temp-output:C:\Users\swank\Desktop\bachelor\KliPr\src\KliPr\obj\Debug\netcoreapp1.0\
+--out:C:\Users\swank\Desktop\bachelor\KliPr\src\KliPr\bin\Debug\netcoreapp1.0\KliPr.dll
 --define:DEBUG
 --define:TRACE
 --define:NETCOREAPP1_0
@@ -190,8 +190,8 @@
 --reference:C:\Users\swank\.nuget\packages\System.Threading.Timer\4.0.1\ref\netstandard1.2\System.Threading.Timer.dll
 --reference:C:\Users\swank\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\swank\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll
---resource:"C:\Users\swank\Desktop\KliPr\KliPr\src\KliPr\obj\Debug\netcoreapp1.0\KliPrdotnet-compile.deps.json",KliPr.deps.json
-C:\Users\swank\Desktop\KliPr\KliPr\src\KliPr\Program.cs
-C:\Users\swank\Desktop\KliPr\KliPr\src\KliPr\Startup.cs
-C:\Users\swank\Desktop\KliPr\KliPr\src\KliPr\Controllers\ForskerController.cs
-C:\Users\swank\Desktop\KliPr\KliPr\src\KliPr\Controllers\HomeController.cs
+--resource:"C:\Users\swank\Desktop\bachelor\KliPr\src\KliPr\obj\Debug\netcoreapp1.0\KliPrdotnet-compile.deps.json",KliPr.deps.json
+C:\Users\swank\Desktop\bachelor\KliPr\src\KliPr\Program.cs
+C:\Users\swank\Desktop\bachelor\KliPr\src\KliPr\Startup.cs
+C:\Users\swank\Desktop\bachelor\KliPr\src\KliPr\Controllers\ForskerController.cs
+C:\Users\swank\Desktop\bachelor\KliPr\src\KliPr\Controllers\HomeController.cs
