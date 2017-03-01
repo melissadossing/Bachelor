@@ -107,8 +107,6 @@ namespace KliPr.Controllers
         }
         public IActionResult AddQuestion()
         {
-            int x = 0;
-            int y = x + 199;
             return View("Create");
         }
     }
