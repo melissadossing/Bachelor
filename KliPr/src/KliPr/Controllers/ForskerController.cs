@@ -22,7 +22,18 @@ namespace KliPr.Controllers
 
         public IActionResult Dashboard()
         {
-            return View();
+            var activequestionnaire = objds.GetActive();
+
+            QuestionnaireListViewModel vm;
+            if (activequestionnaire != null) {
+                vm = new QuestionnaireListViewModel(activequestionnaire.Id,activequestionnaire.name,activequestionnaire.active);
+            }
+            else
+            {
+                vm = new QuestionnaireListViewModel(new ObjectId(), "Intet spørgeskema er aktiveret", false);
+            }
+
+            return View(vm);
         }
 
         [HttpGet]
@@ -34,7 +45,7 @@ namespace KliPr.Controllers
         public IActionResult Create(Questionnaire q)
         {
             objds.Create(q);
-            return View();
+            return RedirectToAction("Dashboard", "Forsker");
         }
 
         [HttpGet]
@@ -42,10 +53,10 @@ namespace KliPr.Controllers
         {
             var questionnaires = objds.GetAll();
 
-            List<DeleteViewModel> vms = new List<DeleteViewModel>();
+            List<QuestionnaireListViewModel> vms = new List<QuestionnaireListViewModel>();
             foreach(var obj in questionnaires)
             {
-                DeleteViewModel vm = new DeleteViewModel(obj.Id,obj.name,obj.active);
+                QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id,obj.name,obj.active);
                 vms.Add(vm);
             }
 
@@ -69,10 +80,10 @@ namespace KliPr.Controllers
         {
             var questionnaires = objds.GetAll();
 
-            List<DeleteViewModel> vms = new List<DeleteViewModel>();
+            List<QuestionnaireListViewModel> vms = new List<QuestionnaireListViewModel>();
             foreach (var obj in questionnaires)
             {
-                DeleteViewModel vm = new DeleteViewModel(obj.Id, obj.name, obj.active);
+                QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id, obj.name, obj.active);
                 vms.Add(vm);
             }
 
@@ -92,7 +103,7 @@ namespace KliPr.Controllers
             ObjectId activeid = new ObjectId(toactive);
             objds.SetActive(activeid);
 
-            return RedirectToAction("SetActive", "Forsker");
+            return RedirectToAction("Dashboard", "Forsker");
         }
         public IActionResult AddQuestion()
         {

@@ -1,7 +1,8 @@
-﻿@model List<KliPr.ViewModels.DeleteViewModel>
+﻿@model List<KliPr.ViewModels.QuestionnaireListViewModel>
 
 @{
     ViewData["Title"] = "Vælg aktivt spørgeskema";
+    
 }
 
 <h1 class="text-center">Vælg aktivt spørgeskema:</h1>
@@ -23,12 +24,25 @@
                         @{
                             foreach (var q in Model)
                             {
+                                var xtime = new DateTime(1970, 1, 1).AddSeconds(q.Id.Timestamp).ToString("dd/MM/yyyy");
                                 <tr>
                                     <td>@q.name</td>
-                                    <td>@q.Id</td>
+                                    <td>@xtime</td>
+
+                                   
                                     <td>@q.Id</td>
                                     <td>
-                                        <input type="radio" value=@q.Id name="ObjectID">
+                                        @{  
+                                           if (q.active)
+                                            {
+                                                <input type="radio" value=@q.Id name="ObjectID" checked>
+                                            }
+                                            else
+                                            {
+                                                <input type="radio" value=@q.Id name="ObjectID">
+                                            }
+                                        }
+
                                     </td>
                                 </tr>
                             }

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace KliPr.ViewModels
 {
-    public class DeleteViewModel
+    public class QuestionnaireListViewModel
     {
-        public DeleteViewModel(ObjectId qid, string qname, bool qactive)
+        public QuestionnaireListViewModel(ObjectId qid, string qname, bool qactive)
         {
             Id = qid;
             name = qname;

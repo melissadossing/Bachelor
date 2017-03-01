@@ -1,4 +1,5 @@
 ﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -46,6 +47,16 @@ namespace KliPr.Models
             var update = Builders<BsonDocument>.Update.Set("active", true);
             var filter = Builders<BsonDocument>.Filter.Eq("_id",q);
             _db.GetCollection<BsonDocument>("Questionnaires").UpdateOne(filter,update);
+        }
+
+        public Questionnaire GetActive()
+        {
+            var filter = Builders<BsonDocument>.Filter.Eq("active", true);
+            var temp = _db.GetCollection<Questionnaire>("Questionnaires").Find(a => a.active == true).ToList();
+
+            if(temp.Any())
+            return temp.First();
+            return null;
         }
 
     }
