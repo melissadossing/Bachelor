@@ -1,44 +1,46 @@
-﻿@{
+﻿@model List<KliPr.ViewModels.DeleteViewModel>
+
+@{
     ViewData["Title"] = "Slet spørgeskema";
 }
 <h1 class="text-center">Slet spørgeskema</h1>
 <div class="col-md-8 col-md-offset-2">
     <h2>Gemte spørgeskemaer:</h2>
-    <div class="table-responsive ">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Navn</th>
-                    <th>Oprettelsesdato</th>
-                    <th>Antal besvarelser</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Udskrivning</td>
-                    <td>20-02-2017</td>
-                    <td>15</td>
-                    <td><input type="checkbox" value=""></td>
-                </tr>
-                <tr>
-                    <td>Indskrivning</td>
-                    <td>05-02-2017</td>
-                    <td>30</td>
-                    <td><input type="checkbox" value=""></td>
-                </tr>
-                <tr>
-                    <td>Undersøgelse</td>
-                    <td>20-03-2017</td>
-                    <td>70</td>
-                    <td><input type="checkbox" value=""></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="text-center col-xs-12">
-        <button type="submit" class="btn btn-primary btn-lg">Slet valgte</button>
-    </div>
+    <form method="post" id="postform">
+        <div class="form-group">
+            <div class="table-responsive ">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Navn</th>
+                            <th>Oprettelsesdato</th>
+                            <th>Antal besvarelser</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var q in Model)
+                            {
+                                <tr>
+                                    <td>@q.name</td>
+                                    <td>@q.Id</td>
+                                    <td>@q.Id</td>
+                                    <td>
+                                        <input type="checkbox" value=@q.Id name="ObjectID">
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-center col-xs-12">
+                <button type="submit" class="btn btn-primary btn-lg" form="postform">Slet valgte</button>
+            </div>
+        </div>
+</form>
 </div>
 
 

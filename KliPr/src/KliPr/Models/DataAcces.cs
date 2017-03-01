@@ -30,6 +30,11 @@ namespace KliPr.Models
 
             return documents;
         }
-        
+
+        public void delete(ObjectId q)
+        {
+            _db.GetCollection<Questionnaire>("Questionnaires").DeleteOne(a => a.Id == q);
+        }
+
     }
 }

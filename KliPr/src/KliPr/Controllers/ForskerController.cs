@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using KliPr.Models;
+using KliPr.ViewModels;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
+using MongoDB.Bson;
 
 namespace KliPr.Controllers
 {
@@ -33,9 +37,31 @@ namespace KliPr.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Delete()
         {
-            return View();
+            var questionnaires = objds.GetAll();
+
+            List<DeleteViewModel> vms = new List<DeleteViewModel>();
+            foreach(var obj in questionnaires)
+            {
+                DeleteViewModel vm = new DeleteViewModel(obj.Id,obj.name,obj.active);
+                vms.Add(vm);
+            }
+
+            return View(vms);
+        }
+        [HttpPost]
+        public IActionResult Delete(FormCollection fc)
+        {
+            var todelete = Request.Form["ObjectID"];
+            foreach(var d in todelete)
+            {
+                ObjectId delid = new ObjectId(d);
+                objds.delete(delid);
+            }
+
+            return RedirectToAction("Delete", "Forsker");
         }
         public IActionResult SetActive()
         {
