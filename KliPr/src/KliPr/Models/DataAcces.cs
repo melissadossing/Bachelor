@@ -36,5 +36,17 @@ namespace KliPr.Models
             _db.GetCollection<Questionnaire>("Questionnaires").DeleteOne(a => a.Id == q);
         }
 
+        public void SetActive(ObjectId q)
+        {
+            var updatemany = Builders<BsonDocument>.Update.Set("active", false);
+            var filtermany = Builders<BsonDocument>.Filter.Empty;
+            _db.GetCollection<BsonDocument>("Questionnaires").UpdateMany(filtermany, updatemany);
+
+
+            var update = Builders<BsonDocument>.Update.Set("active", true);
+            var filter = Builders<BsonDocument>.Filter.Eq("_id",q);
+            _db.GetCollection<BsonDocument>("Questionnaires").UpdateOne(filter,update);
+        }
+
     }
 }

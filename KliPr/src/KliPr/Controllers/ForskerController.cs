@@ -63,9 +63,36 @@ namespace KliPr.Controllers
 
             return RedirectToAction("Delete", "Forsker");
         }
+
+        [HttpGet]
         public IActionResult SetActive()
         {
-            return View();
+            var questionnaires = objds.GetAll();
+
+            List<DeleteViewModel> vms = new List<DeleteViewModel>();
+            foreach (var obj in questionnaires)
+            {
+                DeleteViewModel vm = new DeleteViewModel(obj.Id, obj.name, obj.active);
+                vms.Add(vm);
+            }
+
+            return View(vms);
+        }
+
+        [HttpPost]
+        public IActionResult SetActive(FormCollection fc)
+        {
+            var toactive = Request.Form["ObjectID"];
+            //foreach (var d in todelete)
+            //{
+            //    ObjectId delid = new ObjectId(d);
+            //    objds.delete(delid);
+            //}
+
+            ObjectId activeid = new ObjectId(toactive);
+            objds.SetActive(activeid);
+
+            return RedirectToAction("SetActive", "Forsker");
         }
         public IActionResult AddQuestion()
         {
