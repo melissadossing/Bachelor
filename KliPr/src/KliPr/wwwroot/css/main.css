@@ -1,9 +1,13 @@
 ﻿body {
-    background-color: #8BB4CC;
+    background-color: #9FA7B5;
 }
 
 .topmargin{
     margin-top:3%;
+}
+
+.btnmargintop{
+    margin-top: 10px;
 }
 
 .topmargin2{
@@ -18,9 +22,48 @@
     padding: 20px;
 }
 
+#thefooter{
+    position: fixed;
+    bottom: 0;
+}
+.svarm{
+    margin-top: 5px;
+}
+.rc0{
+    background-color:#DDE9FC;
+    border-radius:5px;
+    border: 2px solid #ffffff;
+}
+.rc1{
+    background-color:#DDE9FC;
+    border-radius:5px;
+    border: 2px solid #ffffff;
+    display: none;
+}
+
+#q0t1,#q1t1,#q2t1,#q3t1,#q4t1{
+    display: none;
+}
+
 .no-padding {
     padding-right: 0 !important;
     padding-left: 0 !important;
     margin-right: 0;
   margin-left: 0;
+}
+
+.maxwidth{
+    max-width: 200px;
+}
+
+#sel{
+    max-width: 200px;
+}
+
+#quesionnairename{
+    max-width: 450px;
+}
+
+.t2{
+    max-width: 50px;
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using KliPr.Models;
 
 namespace KliPr
 {
@@ -28,6 +29,7 @@ namespace KliPr
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            services.AddTransient<DataAccess>();
             services.AddMvc();
         }
 
