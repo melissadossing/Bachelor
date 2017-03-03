@@ -10,7 +10,7 @@
     <form method="post" id="questioncontainer">
             <div class="form-group">
                 <label for="name">Navn på spørgeskema:</label>
-                <input class="form-control" name="name" placeholder="Navn" id="quesionnairename">
+                <input class="form-control" name="name" placeholder="Navn" id="questionnairename">
                 <br />
                 <label for="sel">Vælg spørgsmål:</label>
                 <select class="form-control" id="sel">
@@ -32,9 +32,9 @@
                     </div>
                     <div class="col-xs-3">
                         <label for="seltype0">Vælg svartype</label>
-                        <select class="form-control" id="seltype0" placeholder="Svartype">
-                            <option>Type 1</option>
-                            <option>Type 2</option>
+                        <select class="form-control" id="seltype0" placeholder="Svartype" name="typeselect">
+                            <option value="0">Type 1</option>
+                            <option value="1">Type 2</option>
                         </select>
                     </div>
                 </div>

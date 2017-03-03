@@ -1,0 +1,75 @@
+﻿@model List<KliPr.Models.Questionnaire>
+
+@{
+    ViewData["Title"] = "Besvar spørgeskema";
+}
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+</head>
+<h1 class="text-center">Opret spørgeskema</h1>
+
+
+<div>
+    <form method="post" id="questioncontainer">
+        <div class="form-group">
+        @{
+            foreach (var q in Model)
+            {
+                @if (q.active)
+                {
+                            @foreach (var e in q.Questions)
+                            {
+                                <div>
+                                    <br />
+                                    @e.text
+                                    @if (e.type == 0)
+                                    {
+                                        <input class="form-control" name=@e.Id placeholder="Indtast svar som text" id="questionnairename">
+                                    }
+                                    @if (e.type == 1)
+                                    {
+                                        @*<input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min=@e.t1a0 data-slider-max=@e.t1a1 data-slider-step="1" data-slider-value=@(e.t1a0+(e.t1a1-e.t1a0)/2) />*@
+                                    }
+                                    
+                                    <br />
+                                </div>
+                            }
+                    }
+                }
+        }
+        </div>
+
+        <div class="row">
+            <div class="text-center ">
+                <button type="submit" value="Submit" class="btn btn-primary btn-lg btnmargintop">Opret spørgeskema</button>
+
+            </div>
+        </div>
+    </form>
+    <input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="3" />
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var mySlider = $("ex1").slider();
+
+        // Call a method on the slider
+        var value = mySlider.slider('getValue');
+
+
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+

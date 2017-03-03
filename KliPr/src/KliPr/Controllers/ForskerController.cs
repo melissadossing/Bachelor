@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using KliPr.Models;
 using KliPr.ViewModels;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using MongoDB.Bson;
+using KliPr.Models;
 
 namespace KliPr.Controllers
 {
@@ -42,9 +42,11 @@ namespace KliPr.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Questionnaire q)
+        public IActionResult Create(QuestionnaireViewModel q)
         {
-            objds.Create(q);
+            var mapper = new ViewModelMapper();
+            var question = mapper.Map(q);
+            objds.Create(question);
             return RedirectToAction("Dashboard", "Forsker");
         }
 
