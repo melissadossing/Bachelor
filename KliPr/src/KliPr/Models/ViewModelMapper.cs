@@ -28,7 +28,7 @@ namespace KliPr.Models
                     t1a1 = qvm.q0t1a1,
                     Id = ObjectId.GenerateNewId(),
                     answers = new List<Answer>(),
-                    type = qvm.typeselect
+                    type = qvm.q0type
 
                 });
             }
@@ -47,7 +47,7 @@ namespace KliPr.Models
                     t1a1 = qvm.q1t1a1,
                     Id = ObjectId.GenerateNewId(),
                     answers = new List<Answer>(),
-                    type = qvm.typeselect
+                    type = qvm.q1type
                 });
             }
             if (qvm.q2name != null)
@@ -64,7 +64,7 @@ namespace KliPr.Models
                     t1a1 = qvm.q2t1a1,
                     Id = ObjectId.GenerateNewId(),
                     answers = new List<Answer>(),
-                    type = qvm.typeselect
+                    type = qvm.q2type
                 });
             }
             if (qvm.q3name != null)
@@ -81,7 +81,7 @@ namespace KliPr.Models
                     t1a1 = qvm.q3t1a1,
                     Id = ObjectId.GenerateNewId(),
                     answers = new List<Answer>(),
-                    type = qvm.typeselect
+                    type = qvm.q2type
                 });
             }
             if (qvm.q4name != null)
@@ -98,7 +98,7 @@ namespace KliPr.Models
                     t1a1 = qvm.q4t1a1,
                     Id = ObjectId.GenerateNewId(),
                     answers = new List<Answer>(),
-                    type = qvm.typeselect
+                    type = qvm.q3type
                 });
             }
 
