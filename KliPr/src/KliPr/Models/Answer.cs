@@ -11,5 +11,6 @@ namespace KliPr.Models
         ObjectId questionID;
         public string textanswer;
         public int amountanswer;
+        public int participanttype;
     }
 }

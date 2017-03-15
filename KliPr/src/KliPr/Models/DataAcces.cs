@@ -2,6 +2,7 @@
 using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace KliPr.Models
 {
@@ -54,6 +55,22 @@ namespace KliPr.Models
             if(temp.Any())
             return temp.First();
             return null;
+        }
+
+        public async Task<bool> addAnswer(ObjectId questionId, ObjectId questionnaireId, Answer a)
+        {
+            var filter = Builders<Questionnaire>.Filter.And(
+            Builders<Questionnaire>.Filter.Where(x => x.Id == questionnaireId),
+            Builders<Questionnaire>.Filter.Eq("Questions.Id", questionId));
+
+            var update = Builders<Questionnaire>.Update.Push("Questions.$.answers", a);
+
+            var ret = await _db.GetCollection<Questionnaire>("Questionnaires").FindOneAndUpdateAsync(filter, update);
+            if (ret != null)
+            {
+                return true;
+            }
+            return false;
         }
 
     }

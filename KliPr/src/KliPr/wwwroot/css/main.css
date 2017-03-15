@@ -1,6 +1,18 @@
-﻿body {
-    background-color: #9FA7B5;
+﻿:root {
+  --green: #CCCC66;
+  --darkgreen: #999966;
+  --blue: #256575;
+  --darkblue: #12404A;
+  --grey: #CCCCCC;
+  --darkgrey: #9E9E9E;
+
 }
+
+body {
+    background-color: var(--grey);
+}
+
+
 
 .topmargin{
     margin-top:3%;
@@ -15,10 +27,10 @@
 }
 
 #questionillu{
-    background-color: aliceblue;
+    background-color: var(--green);
     min-height:50px;
     border-radius: 10px;
-    border: 2px solid #73AD21;
+    border: 2px solid var(--blue);
     padding: 20px;
 }
 
@@ -30,12 +42,12 @@
     margin-top: 5px;
 }
 .rc0{
-    background-color:#DDE9FC;
+    background-color:var(--green);
     border-radius:5px;
     border: 2px solid #ffffff;
 }
 .rc1{
-    background-color:#DDE9FC;
+    background-color:var(--green);
     border-radius:5px;
     border: 2px solid #ffffff;
     display: none;

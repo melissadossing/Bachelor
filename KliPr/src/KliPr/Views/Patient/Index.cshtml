@@ -17,25 +17,45 @@
             {
                 @if (q.active)
                 {
-                            @foreach (var e in q.Questions)
+                    <br />
+                    <p>Hvem er du?</p>
+                    foreach (var es in Enum.GetValues(typeof(KliPr.Enum.Participant)).Cast<KliPr.Enum.Participant>())
+                    {
+                        <div class="radio">
+                            <label><input type="radio" name="participanttype_@q.Id" value=@es>@es.ToString()</label>
+                        </div>
+                    }
+
+                    @foreach (var e in q.Questions)
+                    {
+                        <div>
+                            <br />
+                            @e.text
+                            @if (e.type == 0)
                             {
-                                <div>
-                                    <br />
-                                    @e.text
-                                    @if (e.type == 0)
+                                @foreach (var ta in e.textanswers)
+                                {
+                                    if (ta.text != null)
                                     {
-                                        <input class="form-control" name="textanswer_@e.Id" placeholder="Indtast svar" id="questionnairename">
+                                        <div class="radio">
+                                            <label><input type="radio" name="textanswer_@q.Id @e.Id" value=@ta.Id>@ta.text</label>
+                                        </div>
+
                                     }
-                                    @if (e.type == 1)
-                                    {
-                                        <input type="range" max=@e.t1a1 min=@e.t1a0 onchange="document.getElementById('range_@e.Id').innerHTML = this.value;" step="1" name="numberanswer__@e.Id " id="rangeVal" value="1">
-                                        <em id="range_@e.Id" style="font-style: normal;">1</em>
-                                    }
-                                    <br />
-                                </div>
+
+                                }
                             }
+                            @if (e.type == 1)
+                            {
+                                <input type="range" max=@e.t1a1 min=@e.t1a0 onchange="document.getElementById('range_@e.Id').innerHTML = this.value;"
+                                        step="1" name="numberanswer_@q.Id @e.Id" id="rangeVal" value="1">
+                                <em id="range_@e.Id" style="font-style: normal;">1</em>
+                            }
+                            <br />
+                        </div>
                     }
                 }
+            }
         }
 
             <div class="row">
@@ -44,7 +64,7 @@
 
                 </div>
             </div>
-        </div>
+</div>
 
 
     </form>
