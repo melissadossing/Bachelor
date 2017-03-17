@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using MongoDB.Bson;
 using KliPr.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KliPr.Controllers
 {
+    [Authorize]
     public class ForskerController : Controller
     {
         DataAccess objds;
@@ -15,11 +17,8 @@ namespace KliPr.Controllers
         {
             objds = d;
         }
-        public IActionResult Login()
-        {
-            return View();
-        }
 
+        
         public IActionResult Dashboard()
         {
             var activequestionnaire = objds.GetActive();
