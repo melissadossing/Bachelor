@@ -1,0 +1,50 @@
+﻿@model KliPr.Models.Questionnaire
+
+@{
+    ViewData["Title"] = "Vis grafer";
+}
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+</head>
+
+@{
+    foreach (var obj in Model.Questions)
+    {
+        <canvas id=@obj.Id></canvas>
+
+    }
+
+}
+    
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+            @foreach (var obj in Model.Questions)
+            {
+                    <text>
+                    var data = []
+                    @foreach(var ans in obj.textanswers)
+                    {
+                        if (ans.text != null) { 
+                        <text>
+                        data.push({ value: 300, color: "#F7464A", highlight: "#FF5A5E", label: "@ans.text" });
+                        </text>
+                        }
+                    }
+
+                    var option = {
+                    responsive: true,
+                    };
+
+                    // Get the context of the canvas element we want to select
+                    var ctx = document.getElementById("@obj.Id").getContext('2d');
+                    var myPieChart = new Chart(ctx).Pie(data, option);
+                    </text>
+            }
+
+  });
+</script>
+

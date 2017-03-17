@@ -18,6 +18,12 @@ namespace KliPr.Controllers
             objds = d;
         }
 
+        public IActionResult ShowChart()
+        {
+
+            return View(objds.GetActive());
+        }
+
         
         public IActionResult Dashboard()
         {
