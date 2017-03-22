@@ -66,7 +66,26 @@ namespace KliPr.Models
             var update = Builders<Questionnaire>.Update.Push("Questions.$.answers", a);
 
             var ret = await _db.GetCollection<Questionnaire>("Questionnaires").FindOneAndUpdateAsync(filter, update);
+
+
+
             if (ret != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+        public async Task<bool> incAnswerAmt()
+        {
+
+            var filter1 = Builders<Questionnaire>.Filter.Eq("active", true);
+            var update1 = Builders<Questionnaire>.Update.Inc("answeramount", 1);
+            var ret1 = await _db.GetCollection<Questionnaire>("Questionnaires").UpdateOneAsync(filter1, update1);
+
+
+            if (ret1 != null)
             {
                 return true;
             }

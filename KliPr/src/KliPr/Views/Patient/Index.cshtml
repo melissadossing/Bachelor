@@ -3,80 +3,137 @@
 @{
     ViewData["Title"] = "Besvar spørgeskema";
 }
+
 <head>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+    <script>
+        var currentpage = 1;
+    </script>
 </head>
-<h1 class="text-center">Besvar spørgeskema</h1>
+
+<div class="col-sm-8 col-sm-offset-2 containerwrapper">
+    @foreach (var q in Model)
+    {
+        if (q.active)
+        {
+            <h1 class="text-center">@q.name</h1>
+        }
+    }
 
 
-<div>
+
     <form method="post" id="questioncontainer">
-        <div class="form-group col-xs-4 col-xs-offset-4">
-        @{
-            foreach (var q in Model)
-            {
-                @if (q.active)
+        <div class="form-group ">
+            @{
+                foreach (var q in Model)
                 {
-                    <br />
-                    <p>Hvem er du?</p>
-                    foreach (var es in Enum.GetValues(typeof(KliPr.Enum.Participant)).Cast<KliPr.Enum.Participant>())
+                    @if (q.active)
                     {
-                        <div class="radio">
-                            <label><input type="radio" name="participanttype_@q.Id" value=@es>@es.ToString()</label>
-                        </div>
-                    }
+                        <br />
+                        <div name="QDIV" class="displaynone">
+                            <p>Hvem er du?</p>
 
-                    @foreach (var e in q.Questions)
-                    {
-                        <div>
-                            <br />
-                            @e.text
-                            @if (e.type == 0)
-                            {
-                                @foreach (var ta in e.textanswers)
+                            @foreach (var es in Enum.GetValues(typeof(KliPr.Enum.Participant)).Cast<KliPr.Enum.Participant>
+                                ())
                                 {
-                                    if (ta.text != null)
-                                    {
-                                        <div class="radio">
-                                            <label><input type="radio" name="textanswer_@q.Id @e.Id" value=@ta.Id>@ta.text</label>
-                                        </div>
-
-                                    }
-
+                                <div class="radio">
+                                    <label><input type="radio" required=required name="participanttype_@q.Id" value=@es>@es.ToString()</label>
+                                </div>
                                 }
-                            }
-                            @if (e.type == 1)
-                            {
-                                <input type="range" max=@e.t1a1 min=@e.t1a0 onchange="document.getElementById('range_@e.Id').innerHTML = this.value;"
-                                        step="1" name="numberanswer_@q.Id @e.Id" id="rangeVal" value="1">
-                                <em id="range_@e.Id" style="font-style: normal;">1</em>
-                            }
-                            <br />
                         </div>
+
+                            @foreach (var e in q.Questions)
+                            {
+                                <div name="QDIV" class="displaynone">
+                                    @e.text
+                                    @if (e.type == 0)
+                                    {
+                                        @foreach (var ta in e.textanswers)
+                                        {
+                                            if (ta.text != null)
+                                            {
+                                                <div class="radio">
+                                                    <label><input type="radio" required=required name="textanswer_@q.Id @e.Id" value=@ta.Id>@ta.text</label>
+                                                </div>
+
+                                            }
+
+                                        }
+                                    }
+                                    @if (e.type == 1)
+                                    {
+                                        <input type="range" max=@e.t1a1 min=@e.t1a0 onchange="document.getElementById('range_@e.Id').innerHTML = this.value;"
+                                               step="1" name="numberanswer_@q.Id @e.Id" id="rangeVal" value="1">
+                                        <em id="range_@e.Id" style="font-style: normal;">1</em>
+                                    }
+                                </div>
+                            }
                     }
                 }
             }
-        }
 
-            <div class="row">
-                <div class="text-center ">
-                    <button type="submit" value="Submit" class="btn btn-primary btn-lg btnmargintop">Indsend svar</button>
-
+            <div class="row topmargin">
+                <span class="glyphicon glyphicon-chevron-left glyphbig col-xs-2" id="glyphleft"></span>
+                <div class="text-center col-xs-8">
+                    <div class="text-center glyphbig" id="pagenr">
+                        5/7
+                    </div>
                 </div>
+                <span class="glyphicon glyphicon-chevron-right glyphbig col-xs-2" id="glyphright"></span>
             </div>
-</div>
+            <div class="text-center topmargin">
+                <button type="submit" value="Submit" class="btn btn-primary btn-lg">Indsend svar</button>
+
+            </div>
+        </div>
+
+
+
 
 
     </form>
 </div>
 
 
+
 <script type="text/javascript">
     $(document).ready(function () {
+        var divs = document.getElementsByName("QDIV");
+        divs[0].style.display = 'block';
 
+        var page = document.getElementById("pagenr");
+        page.innerHTML = currentpage + "/" + divs.length;
 
+    });
 
-  });
+    document.getElementById("glyphright").onclick = function () { rightglyph() };
+    document.getElementById("glyphleft").onclick = function () { leftglyph() };
+
+    function rightglyph() {
+        var divs = document.getElementsByName("QDIV");
+        
+        if (currentpage < divs.length) {
+            divs[currentpage-1].style.display = 'none';
+            currentpage++;
+            divs[currentpage-1].style.display = 'block';
+            
+        
+        var page = document.getElementById("pagenr");
+        page.innerHTML = currentpage + "/" + divs.length;
+        }
+    }
+
+    function leftglyph() {       
+        if (currentpage > 1) {
+            var divs = document.getElementsByName("QDIV");
+            divs[currentpage - 1].style.display = 'none';
+            currentpage--;
+            divs[currentpage - 1].style.display = 'block';
+            var page = document.getElementById("pagenr");
+            page.innerHTML = currentpage + "/" + divs.length;
+        }
+    }
+
 </script>
 
 

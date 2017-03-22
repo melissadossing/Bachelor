@@ -84,7 +84,7 @@ namespace KliPr.Controllers
                 }
             }
 
-            
+            var succes2 = await objds.incAnswerAmt();
 
             return RedirectToAction("Succes", "Patient");
         }

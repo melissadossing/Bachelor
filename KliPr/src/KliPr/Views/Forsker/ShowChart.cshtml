@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Vis grafer";
+    var cg = new KliPr.Models.Colorgen();
 }
 <head>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
@@ -10,7 +11,12 @@
 @{
     foreach (var obj in Model.Questions)
     {
-        <canvas id=@obj.Id></canvas>
+        <div class="piechart row col-xs-12">
+            <p class="col-xs-3">@obj.text</p>
+            <canvas class="col-xs-3" id=@obj.Id></canvas>
+            <p class="col-xs-3">heysds</p>
+            <p class="col-xs-3">naaaah!</p>
+        </div>
 
     }
 
@@ -28,9 +34,9 @@
                     var data = []
                     @foreach(var ans in obj.textanswers)
                     {
-                        if (ans.text != null) { 
+                        if (ans.text != null) {
                         <text>
-                        data.push({ value: 300, color: "#F7464A", highlight: "#FF5A5E", label: "@ans.text" });
+                        data.push({ value: 300, color: "@cg.getRandomCol()", highlight: "#FF5A5E", label: "@ans.text" });
                         </text>
                         }
                     }

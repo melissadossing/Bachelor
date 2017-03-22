@@ -17,7 +17,8 @@ namespace KliPr.Models
 
         public ObjectId Id { get; set; }
         public string name { get; set; }
-        public bool active { get; set; }    
+        public bool active { get; set; }
+        public int answeramount { get; set; }    
         
         public List<Question> Questions { get; set; }
     }

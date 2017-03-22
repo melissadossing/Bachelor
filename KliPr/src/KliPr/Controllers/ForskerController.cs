@@ -31,11 +31,11 @@ namespace KliPr.Controllers
 
             QuestionnaireListViewModel vm;
             if (activequestionnaire != null) {
-                vm = new QuestionnaireListViewModel(activequestionnaire.Id,activequestionnaire.name,activequestionnaire.active);
+                vm = new QuestionnaireListViewModel(activequestionnaire.Id,activequestionnaire.name,activequestionnaire.active,activequestionnaire.answeramount);
             }
             else
             {
-                vm = new QuestionnaireListViewModel(new ObjectId(), "Intet spørgeskema er aktiveret", false);
+                vm = new QuestionnaireListViewModel(new ObjectId(), "Intet spørgeskema er aktiveret", false, 0);
             }
 
             return View(vm);
@@ -63,7 +63,7 @@ namespace KliPr.Controllers
             List<QuestionnaireListViewModel> vms = new List<QuestionnaireListViewModel>();
             foreach(var obj in questionnaires)
             {
-                QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id,obj.name,obj.active);
+                QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id,obj.name,obj.active,obj.answeramount);
                 vms.Add(vm);
             }
 
@@ -90,7 +90,7 @@ namespace KliPr.Controllers
             List<QuestionnaireListViewModel> vms = new List<QuestionnaireListViewModel>();
             foreach (var obj in questionnaires)
             {
-                QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id, obj.name, obj.active);
+                QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id, obj.name, obj.active,obj.answeramount);
                 vms.Add(vm);
             }
 

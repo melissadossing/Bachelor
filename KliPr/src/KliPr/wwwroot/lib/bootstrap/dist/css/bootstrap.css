@@ -5,7 +5,8 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 body {
-    padding-top: 90px;
+    padding-top: 0px;
+        height: 100%;
 }
 .panel-login {
     border-color: #ccc;
