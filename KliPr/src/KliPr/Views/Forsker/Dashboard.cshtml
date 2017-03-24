@@ -4,28 +4,29 @@
     ViewData["Title"] = "Dashboard";
 
 }
-
-<div class="col-md-8 col-sm-6 col-xs-6">
-    <h1>Aktivt spørgeskema:</h1>
-    <div id="questionillu">
-        <h2>Navn: @Model.name </h2>
-        <h3>Antal besvarelser: @Model.answeramount</h3>
+<div class="thetopmargin">
+    <div class="col-md-8 col-sm-6 col-xs-6">
+        <h1>Aktivt spørgeskema:</h1>
+        <div id="questionillu">
+            <h2>Navn: @Model.name </h2>
+            <h3>Antal besvarelser: @Model.answeramount</h3>
+        </div>
     </div>
-</div>
-<div class="col-md-4 col-sm-6 col-xs-6">
-    <div class="row-md-4">
-        <button type="button" class="btn btn-primary btn-lg btn-block"  onclick="location.href='@Url.Action("Create", "Forsker")'">Opret spørgeskema</button>
-    </div>
-    <div class="row-md-4 topmargin" >
-        <button type="button" class="btn btn-primary btn-lg btn-block topmargin" onclick="location.href='@Url.Action("Delete", "Forsker")'">Slet spørgeskema</button>
-    </div>
-    <div class="row-md-4 topmargin">
-        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("SetActive", "Forsker")'">Vælg aktivt spørgeskema</button>
-    </div>
-    <div class="row-md-4 topmargin2">
-        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("ShowChart", "Forsker")'">Vælg diagram</button>
-    </div>
-    <div class="row-md-4 topmargin">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Exportér data</button>
+    <div class="col-md-4 col-sm-6 col-xs-6">
+        <div class="row-md-4">
+            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("Create", "Forsker")'">Opret spørgeskema</button>
+        </div>
+        <div class="row-md-4 topmargin">
+            <button type="button" class="btn btn-primary btn-lg btn-block topmargin" onclick="location.href='@Url.Action("Delete", "Forsker")'">Slet spørgeskema</button>
+        </div>
+        <div class="row-md-4 topmargin">
+            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("SetActive", "Forsker")'">Vælg aktivt spørgeskema</button>
+        </div>
+        <div class="row-md-4 topmargin2">
+            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("ShowChart", "Forsker")'">Vælg diagram</button>
+        </div>
+        <div class="row-md-4 topmargin">
+            <button type="button" class="btn btn-primary btn-lg btn-block">Exportér data</button>
+        </div>
     </div>
 </div>

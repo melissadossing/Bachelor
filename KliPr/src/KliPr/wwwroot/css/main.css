@@ -19,6 +19,9 @@ body {
     padding:0;
 }
 
+#glyphright{
+    float:right;
+}
 .minheight{
     min-height: 200px;
 }
@@ -28,10 +31,17 @@ body {
     padding-left: 30px;
     padding-right: 30px;
     box-shadow: 0 4px 0px 0 rgba(0, 0, 0, 0.35), 0 6px 20px 0 rgba(0, 0, 0, 0.35);
+    min-height: 500px;
 }
 
 .topmargin{
     margin-top:3%;
+}
+
+.floatbot{
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 .piechart{
@@ -74,16 +84,24 @@ body {
     display: none;
 }
 
-#q0t1,#q1t1,#q2t1,#q3t1,#q4t1{
+.nondisplay{
     display: none;
 }
 
+.thetopmargin{
+     padding-top: 69px;
+}
 .displaynone{
     display: none;
 }
 
+
+.glyphmed{
+    font-size: 1.6em;
+}
+
 .glyphbig{
-    font-size: 1.5em;
+    font-size: 3em;
 }
 
 
