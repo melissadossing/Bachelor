@@ -8,19 +8,22 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
 </head>
 
-@{
-    foreach (var obj in Model.Questions)
-    {
-        <div class="piechart row col-xs-12">
-            <p class="col-xs-3">@obj.text</p>
-            <canvas class="col-xs-3" id=@obj.Id></canvas>
-            <p class="col-xs-3">heysds</p>
-            <p class="col-xs-3">naaaah!</p>
-        </div>
+<div class="thetopmargin">
+    @{
+        foreach (var obj in Model.Questions)
+        {
+            <div class="piechart row col-xs-12">
+                <p class="col-xs-3">@obj.text</p>
+                <canvas class="col-xs-3" id=@obj.Id></canvas>
+                <p class="col-xs-3">heysds</p>
+                <p class="col-xs-3">naaaah!</p>
+            </div>
+
+        }
 
     }
 
-}
+</div>
     
 
 

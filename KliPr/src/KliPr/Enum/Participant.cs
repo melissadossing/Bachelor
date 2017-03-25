@@ -7,7 +7,7 @@ namespace KliPr.Enum
 {
     public enum Participant
     {
-        Sundhedspersonale = 0,
+        Pårørende = 0,
         Patient = 1
     }
 }

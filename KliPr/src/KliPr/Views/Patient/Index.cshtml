@@ -1,7 +1,9 @@
 ﻿@model List<KliPr.Models.Questionnaire>
 
+
 @{
     ViewData["Title"] = "Besvar spørgeskema";
+    int radioamt = 1;
 }
 
 <head>
@@ -48,6 +50,8 @@
                                     @e.text
                                     @if (e.type == 0)
                                     {
+                                        radioamt++;
+
                                         @foreach (var ta in e.textanswers)
                                         {
                                             if (ta.text != null)
@@ -62,6 +66,7 @@
                                     }
                                     @if (e.type == 1)
                                     {
+                                        
                                         <input type="range" max=@e.t1a1 min=@e.t1a0 onchange="document.getElementById('range_@e.Id').innerHTML = this.value;"
                                                step="1" name="numberanswer_@q.Id @e.Id" id="rangeVal" value="1">
                                         <em id="range_@e.Id" style="font-style: normal;">1</em>
@@ -72,21 +77,26 @@
                 }
             }
 
+
+        </div>
+        <div class="col-sm-8 col-sm-offset-2 floatbot">
             <div class="row topmargin">
                 <span class="glyphicon glyphicon-chevron-left glyphbig col-xs-2" id="glyphleft"></span>
                 <div class="text-center col-xs-8">
-                    <div class="text-center glyphbig" id="pagenr">
+                    <div class="text-center glyphmed" id="pagenr">
                         5/7
                     </div>
                 </div>
-                <span class="glyphicon glyphicon-chevron-right glyphbig col-xs-2" id="glyphright"></span>
+                <div class="col-xs-2">
+                    <span class="glyphicon glyphicon-chevron-right glyphbig " id="glyphright"></span>
+                </div>
             </div>
             <div class="text-center topmargin">
-                <button type="submit" value="Submit" class="btn btn-primary btn-lg">Indsend svar</button>
+                <button id="submitbtn" type="submit" value="Submit" class="btn btn-primary btn-lg">Indsend svar</button>
 
             </div>
+            <br />
         </div>
-
 
 
 
@@ -96,45 +106,68 @@
 
 
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        var divs = document.getElementsByName("QDIV");
-        divs[0].style.display = 'block';
 
-        var page = document.getElementById("pagenr");
-        page.innerHTML = currentpage + "/" + divs.length;
-
-    });
-
-    document.getElementById("glyphright").onclick = function () { rightglyph() };
-    document.getElementById("glyphleft").onclick = function () { leftglyph() };
-
-    function rightglyph() {
-        var divs = document.getElementsByName("QDIV");
-        
-        if (currentpage < divs.length) {
-            divs[currentpage-1].style.display = 'none';
-            currentpage++;
-            divs[currentpage-1].style.display = 'block';
-            
-        
-        var page = document.getElementById("pagenr");
-        page.innerHTML = currentpage + "/" + divs.length;
-        }
-    }
-
-    function leftglyph() {       
-        if (currentpage > 1) {
+    <script type="text/javascript">
+        $(document).ready(function () {
             var divs = document.getElementsByName("QDIV");
-            divs[currentpage - 1].style.display = 'none';
-            currentpage--;
-            divs[currentpage - 1].style.display = 'block';
+            divs[0].style.display = 'block';
+
+            var btn = document.getElementById("submitbtn")
+            btn.style.visibility = "hidden";
+
             var page = document.getElementById("pagenr");
             page.innerHTML = currentpage + "/" + divs.length;
-        }
-    }
 
-</script>
+        });
+
+
+        var radios = document.querySelectorAll('input[type=radio]');
+
+        function changeHandler(event) {
+            if(atLeastOneRadio()==@radioamt)
+            {
+                var btn = document.getElementById("submitbtn")
+                btn.style.visibility = "visible";
+
+            }
+        }
+
+        Array.prototype.forEach.call(radios, function (radio) {
+            radio.addEventListener('change', changeHandler);
+        });
+
+        document.getElementById("glyphright").onclick = function () { rightglyph() };
+        document.getElementById("glyphleft").onclick = function () { leftglyph() };
+
+        function rightglyph() {
+            var divs = document.getElementsByName("QDIV");
+
+
+            if (currentpage < divs.length) {
+                divs[currentpage - 1].style.display = 'none';
+                currentpage++;
+                divs[currentpage - 1].style.display = 'block';
+
+                var page = document.getElementById("pagenr");
+                page.innerHTML = currentpage + "/" + divs.length;
+            }
+        }
+
+        function leftglyph() {
+            if (currentpage > 1) {
+                var divs = document.getElementsByName("QDIV");
+                divs[currentpage - 1].style.display = 'none';
+                currentpage--;
+                divs[currentpage - 1].style.display = 'block';
+                var page = document.getElementById("pagenr");
+                page.innerHTML = currentpage + "/" + divs.length;
+
+            }
+        }
+        function atLeastOneRadio() {
+            return ($('input[type=radio]:checked').size());
+        }
+    </script>
 
 
 

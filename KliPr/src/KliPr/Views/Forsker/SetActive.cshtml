@@ -4,58 +4,59 @@
     ViewData["Title"] = "Vælg aktivt spørgeskema";
     
 }
+<div class="thetopmargin">
+    <h1 class="text-center">Vælg aktivt spørgeskema:</h1>
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Gemte spørgeskemaer:</h2>
+        <form method="post" id="postform">
+            <div class="form-group">
+                <div class="table-responsive ">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Navn</th>
+                                <th>Oprettelsesdato</th>
+                                <th>Antal besvarelser</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                foreach (var q in Model)
+                                {
+                                    var xtime = new DateTime(1970, 1, 1).AddSeconds(q.Id.Timestamp).ToString("dd/MM/yyyy");
+                                    <tr>
+                                        <td>@q.name</td>
+                                        <td>@xtime</td>
 
-<h1 class="text-center">Vælg aktivt spørgeskema:</h1>
-<div class="col-md-8 col-md-offset-2">
-    <h2>Gemte spørgeskemaer:</h2>
-    <form method="post" id="postform">
-        <div class="form-group">
-            <div class="table-responsive ">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Navn</th>
-                            <th>Oprettelsesdato</th>
-                            <th>Antal besvarelser</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @{
-                            foreach (var q in Model)
-                            {
-                                var xtime = new DateTime(1970, 1, 1).AddSeconds(q.Id.Timestamp).ToString("dd/MM/yyyy");
-                                <tr>
-                                    <td>@q.name</td>
-                                    <td>@xtime</td>
 
-                                   
-                                    <td>@q.answeramount</td>
-                                    <td>
-                                        @{  
-                                           if (q.active)
-                                            {
-                                                <input type="radio" value=@q.Id name="ObjectID" checked>
+                                        <td>@q.answeramount</td>
+                                        <td>
+                                            @{
+                                                if (q.active)
+                                                {
+                                                    <input type="radio" value=@q.Id name="ObjectID" checked>
+                                                }
+                                                else
+                                                {
+                                                    <input type="radio" value=@q.Id name="ObjectID">
+                                                }
                                             }
-                                            else
-                                            {
-                                                <input type="radio" value=@q.Id name="ObjectID">
-                                            }
-                                        }
 
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
+                                                }
                             }
-                        }
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center col-xs-12">
+                    <button type="submit" class="btn btn-primary btn-lg" form="postform">Vælg som aktiv</button>
+                </div>
             </div>
-            <div class="text-center col-xs-12">
-                <button type="submit" class="btn btn-primary btn-lg" form="postform">Vælg som aktiv</button>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 
 

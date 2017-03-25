@@ -3,44 +3,46 @@
 @{
     ViewData["Title"] = "Slet spørgeskema";
 }
-<h1 class="text-center">Slet spørgeskema</h1>
-<div class="col-md-8 col-md-offset-2">
-    <h2>Gemte spørgeskemaer:</h2>
-    <form method="post" id="postform">
-        <div class="form-group">
-            <div class="table-responsive ">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Navn</th>
-                            <th>Oprettelsesdato</th>
-                            <th>Antal besvarelser</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @{
-                            foreach (var q in Model)
-                            {
-                                <tr>
-                                    <td>@q.name</td>
-                                    <td>@q.Id</td>
-                                    <td>@q.Id</td>
-                                    <td>
-                                        <input type="checkbox" value=@q.Id name="ObjectID">
-                                    </td>
-                                </tr>
+<div class="thetopmargin">
+    <h1 class="text-center">Slet spørgeskema</h1>
+    <div class="col-md-8 col-md-offset-2">
+        <h2>Gemte spørgeskemaer:</h2>
+        <form method="post" id="postform">
+            <div class="form-group">
+                <div class="table-responsive ">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Navn</th>
+                                <th>Oprettelsesdato</th>
+                                <th>Antal besvarelser</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                foreach (var q in Model)
+                                {
+                                    <tr>
+                                        <td>@q.name</td>
+                                        <td>@q.Id</td>
+                                        <td>@q.Id</td>
+                                        <td>
+                                            <input type="checkbox" value=@q.Id name="ObjectID">
+                                        </td>
+                                    </tr>
+                                }
                             }
-                        }
 
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center col-xs-12">
+                    <button type="submit" class="btn btn-primary btn-lg" form="postform">Slet valgte</button>
+                </div>
             </div>
-            <div class="text-center col-xs-12">
-                <button type="submit" class="btn btn-primary btn-lg" form="postform">Slet valgte</button>
-            </div>
-        </div>
-</form>
+        </form>
+    </div>
 </div>
 
 
