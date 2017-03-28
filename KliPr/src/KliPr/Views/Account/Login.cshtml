@@ -8,6 +8,12 @@
 
   var lock = new Auth0Lock('@Model.ClientId', '@Model.Domain', {
       container: 'root',
+      languageDictionary: {
+          title: "KliPr"
+      },
+      theme: {
+          logo: 'http://localhost:3701/images/logo.png'
+      },
       allowSignUp: false,
       auth: {
       redirectUrl: '@Model.CallbackUrl',

@@ -23,10 +23,12 @@
                             @{
                                 foreach (var q in Model)
                                 {
+                                    var xtime = new DateTime(1970, 1, 1).AddSeconds(q.Id.Timestamp).ToString("dd/MM/yyyy");
+
                                     <tr>
                                         <td>@q.name</td>
-                                        <td>@q.Id</td>
-                                        <td>@q.Id</td>
+                                        <td>@xtime</td>
+                                        <td>@q.answeramount</td>
                                         <td>
                                             <input type="checkbox" value=@q.Id name="ObjectID">
                                         </td>

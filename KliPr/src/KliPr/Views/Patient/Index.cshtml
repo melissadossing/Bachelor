@@ -1,4 +1,4 @@
-﻿@model List<KliPr.Models.Questionnaire>
+﻿@model KliPr.Models.Questionnaire
 
 
 @{
@@ -14,40 +14,34 @@
 </head>
 
 <div class="col-sm-8 col-sm-offset-2 containerwrapper">
-    @foreach (var q in Model)
-    {
-        if (q.active)
-        {
-            <h1 class="text-center">@q.name</h1>
-        }
-    }
+
+    @if(@Model!=null) { 
+            <h1 class="text-center">@Model.name</h1>
+
 
 
 
     <form method="post" id="questioncontainer">
         <div class="form-group ">
             @{
-                foreach (var q in Model)
-                {
-                    @if (q.active)
-                    {
+
                         <br />
                         <div name="QDIV" class="displaynone">
-                            <p>Hvem er du?</p>
+                            <h3>Hvem er du?</h3>
 
                             @foreach (var es in Enum.GetValues(typeof(KliPr.Enum.Participant)).Cast<KliPr.Enum.Participant>
                                 ())
                                 {
                                 <div class="radio">
-                                    <label><input type="radio" required=required name="participanttype_@q.Id" value=@es>@es.ToString()</label>
+                                    <label><input type="radio" required=required name="participanttype_@Model.Id" value=@es>@es.ToString()</label>
                                 </div>
                                 }
                         </div>
 
-                            @foreach (var e in q.Questions)
+                            @foreach (var e in Model.Questions)
                             {
                                 <div name="QDIV" class="displaynone">
-                                    @e.text
+                                    <h3>@e.text</h3>
                                     @if (e.type == 0)
                                     {
                                         radioamt++;
@@ -57,7 +51,7 @@
                                             if (ta.text != null)
                                             {
                                                 <div class="radio">
-                                                    <label><input type="radio" required=required name="textanswer_@q.Id @e.Id" value=@ta.Id>@ta.text</label>
+                                                    <label><input type="radio" required=required name="textanswer_@Model.Id @e.Id" value=@ta.Id>@ta.text</label>
                                                 </div>
 
                                             }
@@ -68,18 +62,34 @@
                                     {
                                         
                                         <input type="range" max=@e.t1a1 min=@e.t1a0 onchange="document.getElementById('range_@e.Id').innerHTML = this.value;"
-                                               step="1" name="numberanswer_@q.Id @e.Id" id="rangeVal" value="1">
+                                               step="1" name="numberanswer_@Model.Id @e.Id" id="rangeVal" value="1">
                                         <em id="range_@e.Id" style="font-style: normal;">1</em>
                                     }
+
+                                    @if (e.type == 2)
+                                    {
+                                        <div class="col-xs-8 nopadding">
+                                            <textarea class="form-control noresize" rows="5" name="singletext_@Model.Id @e.Id"></textarea>
+                                        </div>
+                                    }
+
+                                    @if (e.type != 2) {
+                                    <div class="col-xs-8 nopadding">
+                                        Uddybelse af svar
+                                        <br />
+                                        <textarea class="form-control noresize" rows="3" name="elaboration_@Model.Id @e.Id"></textarea>
+                                    </div>
+                                    }
+
                                 </div>
                             }
-                    }
-                }
+
+
             }
 
 
         </div>
-        <div class="col-sm-8 col-sm-offset-2 floatbot">
+        <div class="col-sm-8 col-sm-offset-2">
             <div class="row topmargin">
                 <span class="glyphicon glyphicon-chevron-left glyphbig col-xs-2" id="glyphleft"></span>
                 <div class="text-center col-xs-8">
@@ -92,7 +102,7 @@
                 </div>
             </div>
             <div class="text-center topmargin">
-                <button id="submitbtn" type="submit" value="Submit" class="btn btn-primary btn-lg">Indsend svar</button>
+                <button id="submitbtn" type="submit" value="Submit" class="btn btn-primary btn-lg" style="visibility:hidden">Indsend svar</button>
 
             </div>
             <br />
@@ -102,6 +112,11 @@
 
 
     </form>
+                }
+@if (@Model == null)
+{
+    <h1 class="text-center">Intet spørgeskema valgt</h1>
+}
 </div>
 
 

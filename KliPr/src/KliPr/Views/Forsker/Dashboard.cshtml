@@ -1,15 +1,40 @@
-﻿@model KliPr.ViewModels.QuestionnaireListViewModel
+﻿@model List<KliPr.ViewModels.QuestionnaireListViewModel>
 
 @{
     ViewData["Title"] = "Dashboard";
 
 }
 <div class="thetopmargin">
-    <div class="col-md-8 col-sm-6 col-xs-6">
-        <h1>Aktivt spørgeskema:</h1>
+    <div class="col-md-8 col-sm-6 col-xs-6"> 
         <div id="questionillu">
-            <h2>Navn: @Model.name </h2>
-            <h3>Antal besvarelser: @Model.answeramount</h3>
+            <h1>Aktuelle spørgeskemaer:</h1>
+            <div class="table-responsive ">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Navn</th>
+                            <th>Oprettelsesdato</th>
+                            <th>Antal besvarelser</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var q in Model)
+                            {
+                                var xtime = new DateTime(1970, 1, 1).AddSeconds(q.Id.Timestamp).ToString("dd/MM/yyyy");
+
+                                <tr>
+                                    <td>@q.name</td>
+                                    <td>@xtime</td>
+                                    <td>@q.answeramount</td>
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
     <div class="col-md-4 col-sm-6 col-xs-6">
@@ -18,9 +43,6 @@
         </div>
         <div class="row-md-4 topmargin">
             <button type="button" class="btn btn-primary btn-lg btn-block topmargin" onclick="location.href='@Url.Action("Delete", "Forsker")'">Slet spørgeskema</button>
-        </div>
-        <div class="row-md-4 topmargin">
-            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("SetActive", "Forsker")'">Vælg aktivt spørgeskema</button>
         </div>
         <div class="row-md-4 topmargin2">
             <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("ShowChart", "Forsker")'">Vælg diagram</button>

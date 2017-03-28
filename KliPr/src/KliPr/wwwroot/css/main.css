@@ -3,6 +3,7 @@
   --darkgreen: #999966;
   --blue: #256575;
   --darkblue: #12404A;
+  --lightblue: #94C5D1;
   --grey: #CCCCCC;
   --darkgrey: #9E9E9E;
 
@@ -28,14 +29,30 @@ body {
 .containerwrapper{
     background-color: white;
     padding-top: 69px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
     box-shadow: 0 4px 0px 0 rgba(0, 0, 0, 0.35), 0 6px 20px 0 rgba(0, 0, 0, 0.35);
-    min-height: 500px;
+    min-height: 600px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 .topmargin{
     margin-top:3%;
+}
+
+.noresize{
+    resize:none
+}
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
 }
 
 .floatbot{
@@ -53,12 +70,15 @@ body {
     margin-top: 10px;
 }
 
+.btnmargintop5{
+    margin-top: 40px;
+}
 .topmargin2{
     margin-top:8%;
 }
 
 #questionillu{
-    background-color: var(--green);
+    background-color: white;
     min-height:50px;
     border-radius: 10px;
     border: 2px solid var(--blue);
@@ -73,12 +93,12 @@ body {
     margin-top: 5px;
 }
 .rc0{
-    background-color:var(--green);
+    background-color:var(--lightblue);
     border-radius:5px;
     border: 2px solid #ffffff;
 }
 .rc1{
-    background-color:var(--green);
+    background-color:var(--lightblue);
     border-radius:5px;
     border: 2px solid #ffffff;
     display: none;

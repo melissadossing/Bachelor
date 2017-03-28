@@ -1,0 +1,67 @@
+﻿@model List<KliPr.ViewModels.QuestionnaireListViewModel>
+
+@{
+    ViewData["Title"] = "Vælg spørgeskema til besvarelse";
+
+}
+<div class="col-sm-8 col-sm-offset-2 containerwrapper">
+    <h1 class="text-center">Vælg spørgeskema:</h1>
+    <br />
+    <br />
+    <div class="col-md-10 col-md-offset-1">
+        <form method="post" id="postform">
+            <div class="form-group">
+                <div class="table-responsive ">
+                    <table class="table">
+                        <tbody>
+                            @{
+                                foreach (var q in Model)
+                                {
+                                    <tr>
+                                        <td>@q.name</td>
+                                        <td>
+                                            @{
+
+                                                <input type="radio" value=@q.Id name="ObjectID">
+
+                                            }
+
+                                        </td>
+                                    </tr>
+                                                }
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center col-xs-12">
+                    <br />
+                    <br />
+                    <button type="submit" class="btn btn-primary btn-lg" style="visibility:hidden" id="okbtn" form="postform">OK</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    var radios = document.querySelectorAll('input[type=radio]');
+
+    function changeHandler(event) {
+        if(atLeastOneRadio()>0)
+        {
+            var btn = document.getElementById("okbtn")
+            btn.style.visibility = "visible";
+
+        }
+    }
+
+    Array.prototype.forEach.call(radios, function (radio) {
+        radio.addEventListener('change', changeHandler);
+    });
+
+    function atLeastOneRadio() {
+        return ($('input[type=radio]:checked').size());
+    }
+</script>

@@ -27,18 +27,16 @@ namespace KliPr.Controllers
         
         public IActionResult Dashboard()
         {
-            var activequestionnaire = objds.GetActive();
+            var questionnaires = objds.GetAll();
 
-            QuestionnaireListViewModel vm;
-            if (activequestionnaire != null) {
-                vm = new QuestionnaireListViewModel(activequestionnaire.Id,activequestionnaire.name,activequestionnaire.active,activequestionnaire.answeramount);
-            }
-            else
+            List<QuestionnaireListViewModel> vms = new List<QuestionnaireListViewModel>();
+            foreach (var obj in questionnaires)
             {
-                vm = new QuestionnaireListViewModel(new ObjectId(), "Intet spørgeskema er aktiveret", false, 0);
+                QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id, obj.name, obj.active, obj.answeramount);
+                vms.Add(vm);
             }
 
-            return View(vm);
+            return View(vms);
         }
 
         [HttpGet]

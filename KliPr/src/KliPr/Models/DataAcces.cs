@@ -57,6 +57,16 @@ namespace KliPr.Models
             return null;
         }
 
+
+        public Questionnaire GetById(ObjectId id)
+        {
+            var temp = _db.GetCollection<Questionnaire>("Questionnaires").Find(a => a.Id == id).ToList();
+            if (temp.Any())
+                
+                return temp.First();
+            return null;
+        }
+
         public async Task<bool> addAnswer(ObjectId questionId, ObjectId questionnaireId, Answer a)
         {
             var filter = Builders<Questionnaire>.Filter.And(
@@ -77,10 +87,10 @@ namespace KliPr.Models
         }
 
 
-        public async Task<bool> incAnswerAmt()
+        public async Task<bool> incAnswerAmt(ObjectId id)
         {
 
-            var filter1 = Builders<Questionnaire>.Filter.Eq("active", true);
+            var filter1 = Builders<Questionnaire>.Filter.Eq("Id", id);
             var update1 = Builders<Questionnaire>.Update.Inc("answeramount", 1);
             var ret1 = await _db.GetCollection<Questionnaire>("Questionnaires").UpdateOneAsync(filter1, update1);
 

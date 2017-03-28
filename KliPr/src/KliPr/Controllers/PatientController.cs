@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using KliPr.Models;
 using MongoDB.Bson;
 using KliPr.Enum;
+using KliPr.ViewModels;
 
 namespace KliPr.Controllers
 {
@@ -20,13 +21,15 @@ namespace KliPr.Controllers
         }
         // GET: /<controller>/
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(string id)
         {
-            
+            if (id != null) { 
+                ObjectId selectedobjid = new ObjectId(id);
+                var questionnaire = objds.GetById(selectedobjid);
+                return View(questionnaire);
+            }
 
-
-            var questionnaires = objds.GetAll();
-            return View(questionnaires);
+            return View(null);
         }
 
         [HttpGet]
@@ -40,6 +43,7 @@ namespace KliPr.Controllers
         {
             if (Request.Form.Count < 1) { return RedirectToAction("Index", "Patient"); }
             var todelete = Request.Form["ObjectID"];
+            string questionnaireIDres = null;
 
 
             //foreach (var d in todelete)
@@ -54,6 +58,13 @@ namespace KliPr.Controllers
                 var answer = new Answer();
                 answer.participanttype = partType;
 
+                if (key.Key.StartsWith("elaboration"))
+                {
+                    continue;
+                }
+
+
+
                 if (key.Key.StartsWith("participanttype_"))
                 {
 
@@ -61,21 +72,51 @@ namespace KliPr.Controllers
                     continue;
                 }
 
-                if (key.Key.StartsWith("textanswer_"))
-                {
-                    answer.textanswer = key.Value;
-                }
-                if (key.Key.StartsWith("numberanswer_"))
-                {
-                    answer.amountanswer = Int32.Parse(key.Value);
-                }
-
-                //insert answer to db
                 var tempID = key.Key;
                 var result = tempID.Substring(tempID.LastIndexOf('_') + 1);
 
                 var questionnaireID = result.Substring(0, result.IndexOf(' '));
                 var questionID = result.Substring(result.LastIndexOf(' ') + 1);
+
+
+                if (key.Key.StartsWith("textanswer_"))
+                {
+                    answer.textanswer = key.Value;
+                    foreach (var key2 in Request.Form)
+                    {
+                        if (key2.Key.StartsWith("elaboration_" + questionnaireID + " " + questionID)){ 
+                        answer.elaboration = key2.Value;
+                        }
+                    }
+                }
+                if (key.Key.StartsWith("numberanswer_"))
+                {
+                    answer.amountanswer = Int32.Parse(key.Value);
+                    foreach (var key2 in Request.Form)
+                    {
+                        if (key2.Key.StartsWith("elaboration_" + questionnaireID + " " + questionID))
+                        {
+                            answer.elaboration = key2.Value;
+                        }
+                    }
+                }
+                if (key.Key.StartsWith("singletext_"))
+                {
+                    answer.singletext = key.Value;
+                    foreach (var key2 in Request.Form)
+                    {
+                        if (key2.Key.StartsWith("elaboration_" + questionnaireID + " " + questionID))
+                        {
+                            answer.elaboration = key2.Value;
+                        }
+                    }
+                }
+
+
+                //insert answer to db
+
+
+                questionnaireIDres = questionnaireID;
 
                 var succes = await objds.addAnswer(new ObjectId(questionID), new ObjectId(questionnaireID),answer);
                 if (!succes)
@@ -84,9 +125,34 @@ namespace KliPr.Controllers
                 }
             }
 
-            var succes2 = await objds.incAnswerAmt();
+            var succes2 = await objds.incAnswerAmt(new ObjectId(questionnaireIDres));
 
             return RedirectToAction("Succes", "Patient");
+        }
+
+
+        [HttpGet]
+        public IActionResult SelectQuestionnaire()
+        {
+            var questionnaires = objds.GetAll();
+
+            List<QuestionnaireListViewModel> vms = new List<QuestionnaireListViewModel>();
+            foreach (var obj in questionnaires)
+            {
+                QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id, obj.name, obj.active, obj.answeramount);
+                vms.Add(vm);
+            }
+
+            return View(vms);
+        }
+
+        [HttpPost]
+        public IActionResult SelectQuestionnaire(FormCollection fc)
+        {
+            string selected = Request.Form["ObjectID"];
+            //ObjectId selectedobjid = new ObjectId(selected);
+
+            return RedirectToAction("Index", "Patient", new { id = selected });
         }
     }
 }
