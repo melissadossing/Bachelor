@@ -81,7 +81,7 @@ namespace KliPr.Controllers
 
                 if (key.Key.StartsWith("textanswer_"))
                 {
-                    answer.textanswer = key.Value;
+                    answer.textanswer = new ObjectId(key.Value);
                     foreach (var key2 in Request.Form)
                     {
                         if (key2.Key.StartsWith("elaboration_" + questionnaireID + " " + questionID)){ 

@@ -18,10 +18,10 @@ namespace KliPr.Controllers
             objds = d;
         }
 
-        public IActionResult ShowChart()
+        public IActionResult ShowChart(string id)
         {
 
-            return View(objds.GetActive());
+            return View(objds.GetById(new ObjectId(id)));
         }
 
         
@@ -113,6 +113,30 @@ namespace KliPr.Controllers
         public IActionResult AddQuestion()
         {
             return View("Create");
+        }
+
+        [HttpGet]
+        public IActionResult Chooseforchart()
+        {
+            var questionnaires = objds.GetAll();
+
+            List<QuestionnaireListViewModel> vms = new List<QuestionnaireListViewModel>();
+            foreach (var obj in questionnaires)
+            {
+                QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id, obj.name, obj.active, obj.answeramount);
+                vms.Add(vm);
+            }
+
+            return View(vms);
+        }
+
+        [HttpPost]
+        public IActionResult Chooseforchart(FormCollection fc)
+        {
+            string selected = Request.Form["ObjectID"];
+            //ObjectId selectedobjid = new ObjectId(selected);
+
+            return RedirectToAction("ShowChart", "Forsker", new { id = selected });
         }
     }
 }

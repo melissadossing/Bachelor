@@ -224,6 +224,7 @@ namespace KliPr.Models
                 
                 for(int i = 0; i < textanswers.Length; i++)
                 {
+                    if(textanswers[i] != null)
                     rettextanswers.Add(new Textanswer(){ text = textanswers[i] });
                 }
 

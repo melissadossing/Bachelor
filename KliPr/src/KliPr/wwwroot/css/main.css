@@ -55,6 +55,11 @@ input::-webkit-inner-spin-button {
    margin: 0 !important;
 }
 
+.littlepadding {
+   padding: 10px !important;
+   margin: 10px !important;
+}
+
 .floatbot{
     position: absolute;
     bottom: 0;
@@ -63,7 +68,19 @@ input::-webkit-inner-spin-button {
 
 .piechart{
     width: 200px;
-    height: 200px;
+    height: 100px;
+}
+
+.chartbg{
+    background-color: var(--lightblue);
+    border-radius:10px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.innerchart{
+    align-self: center;
+    margin-left: auto;
 }
 
 .btnmargintop{
@@ -88,6 +105,7 @@ input::-webkit-inner-spin-button {
 #thefooter{
     position: fixed;
     bottom: 0;
+    right: 30px;
 }
 .svarm{
     margin-top: 5px;

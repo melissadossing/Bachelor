@@ -9,7 +9,7 @@ namespace KliPr.Models
     public class Answer
     {
         ObjectId questionID;
-        public string textanswer;
+        public ObjectId textanswer;
         public int amountanswer;
         public string singletext;
         public int participanttype;
