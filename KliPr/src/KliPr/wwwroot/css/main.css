@@ -60,6 +60,10 @@ input::-webkit-inner-spin-button {
    margin: 10px !important;
 }
 
+.floatleft{
+display:flex
+}
+
 .floatbot{
     position: absolute;
     bottom: 0;
@@ -141,6 +145,8 @@ input::-webkit-inner-spin-button {
 .glyphbig{
     font-size: 3em;
 }
+
+
 
 
 .no-padding {

@@ -118,6 +118,10 @@ namespace KliPr.Controllers
 
                 questionnaireIDres = questionnaireID;
 
+                if(answer.textanswer == null)
+                {
+                    answer.textanswer = ObjectId.GenerateNewId();
+                }
                 var succes = await objds.addAnswer(new ObjectId(questionID), new ObjectId(questionnaireID),answer);
                 if (!succes)
                 {
