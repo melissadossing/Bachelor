@@ -14,6 +14,7 @@ namespace KliPr.Models
             var q = new Questionnaire();
             q.name = qvm.name;
             q.active = false;
+            q.participant = qvm.participant;
 
             if (qvm.q0name != null)
             {
@@ -210,6 +211,90 @@ namespace KliPr.Models
                     answers = new List<Answer>(),
                     textanswers = TextAnswersToList(qvm.q13t0a0, qvm.q13t0a1, qvm.q13t0a2, qvm.q13t0a3, qvm.q13t0a4),
                     type = qvm.q13type
+                });
+            }
+            if (qvm.q14name != null)
+            {
+                q.Questions.Add(new Question()
+                {
+                    text = qvm.q14name,
+                    needanswer = qvm.needanswer14,
+                    t1a0 = qvm.q14t1a0,
+                    t1a1 = qvm.q14t1a1,
+                    Id = ObjectId.GenerateNewId(),
+                    answers = new List<Answer>(),
+                    textanswers = TextAnswersToList(qvm.q14t0a0, qvm.q14t0a1, qvm.q14t0a2, qvm.q14t0a3, qvm.q14t0a4),
+                    type = qvm.q14type
+                });
+            }
+            if (qvm.q15name != null)
+            {
+                q.Questions.Add(new Question()
+                {
+                    text = qvm.q15name,
+                    needanswer = qvm.needanswer15,
+                    t1a0 = qvm.q15t1a0,
+                    t1a1 = qvm.q15t1a1,
+                    Id = ObjectId.GenerateNewId(),
+                    answers = new List<Answer>(),
+                    textanswers = TextAnswersToList(qvm.q15t0a0, qvm.q15t0a1, qvm.q15t0a2, qvm.q15t0a3, qvm.q15t0a4),
+                    type = qvm.q15type
+                });
+            }
+            if (qvm.q16name != null)
+            {
+                q.Questions.Add(new Question()
+                {
+                    text = qvm.q16name,
+                    needanswer = qvm.needanswer16,
+                    t1a0 = qvm.q16t1a0,
+                    t1a1 = qvm.q16t1a1,
+                    Id = ObjectId.GenerateNewId(),
+                    answers = new List<Answer>(),
+                    textanswers = TextAnswersToList(qvm.q16t0a0, qvm.q16t0a1, qvm.q16t0a2, qvm.q16t0a3, qvm.q16t0a4),
+                    type = qvm.q16type
+                });
+            }
+            if (qvm.q17name != null)
+            {
+                q.Questions.Add(new Question()
+                {
+                    text = qvm.q17name,
+                    needanswer = qvm.needanswer17,
+                    t1a0 = qvm.q17t1a0,
+                    t1a1 = qvm.q17t1a1,
+                    Id = ObjectId.GenerateNewId(),
+                    answers = new List<Answer>(),
+                    textanswers = TextAnswersToList(qvm.q17t0a0, qvm.q17t0a1, qvm.q17t0a2, qvm.q17t0a3, qvm.q17t0a4),
+                    type = qvm.q17type
+                });
+            }
+            if (qvm.q18name != null)
+            {
+                q.Questions.Add(new Question()
+                {
+                    text = qvm.q18name,
+                    needanswer = qvm.needanswer18,
+                    t1a0 = qvm.q18t1a0,
+                    t1a1 = qvm.q18t1a1,
+                    Id = ObjectId.GenerateNewId(),
+                    answers = new List<Answer>(),
+                    textanswers = TextAnswersToList(qvm.q18t0a0, qvm.q18t0a1, qvm.q18t0a2, qvm.q18t0a3, qvm.q18t0a4),
+                    type = qvm.q18type
+                });
+            }
+            if (qvm.q19name != null)
+            {
+                q.Questions.Add(new Question()
+                {                   
+                    text = qvm.q19name,
+                    needanswer = qvm.needanswer19,
+                    t1a0 = qvm.q19t1a0,
+                    t1a1 = qvm.q19t1a1,
+                    Id = ObjectId.GenerateNewId(),
+                    answers = new List<Answer>(),
+                    textanswers = TextAnswersToList(qvm.q19t0a0, qvm.q19t0a1, qvm.q19t0a2, qvm.q19t0a3, qvm.q19t0a4),
+                    type = qvm.q19type
                 });
             }
 

@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Hvem er du?";
+    int patient = (int)KliPr.Enum.Participant.Patient;
+    int pårørende = (int)KliPr.Enum.Participant.Pårørende;
+}
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+</head>
+<div class="containerwrapper minheight col-sm-8 col-sm-offset-2">
+    <h3>Hvem er du?</h3>
+    <form method="post" id="postform">
+        <div class="radio">
+            <label><input type="radio" required=required name="radioparti" value=@patient>@KliPr.Enum.Participant.Patient</label>
+            <br />
+            <label><input type="radio" required=required name="radioparti" value=@pårørende>@KliPr.Enum.Participant.Pårørende</label>
+        </div>
+        <div class="text-center col-xs-12">
+            <br />
+            <br />
+            <button type="submit" class="btn btn-primary btn-lg" style="visibility:hidden" id="okbtn" form="postform">OK</button>
+        </div>
+    </form>
+</div>
+
+
+<script type="text/javascript">
+    var radios = document.querySelectorAll('input[type=radio]');
+
+    function changeHandler(event) {
+        if (atLeastOneRadio() > 0) {
+            var btn = document.getElementById("okbtn")
+            btn.style.visibility = "visible";
+
+        }
+    }
+
+    Array.prototype.forEach.call(radios, function (radio) {
+        radio.addEventListener('change', changeHandler);
+    });
+
+    function atLeastOneRadio() {
+        return ($('input[type=radio]:checked').size());
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+

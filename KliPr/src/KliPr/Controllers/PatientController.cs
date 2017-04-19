@@ -136,15 +136,17 @@ namespace KliPr.Controllers
 
 
         [HttpGet]
-        public IActionResult SelectQuestionnaire()
+        public IActionResult SelectQuestionnaire(int id)
         {
             var questionnaires = objds.GetAll();
 
             List<QuestionnaireListViewModel> vms = new List<QuestionnaireListViewModel>();
             foreach (var obj in questionnaires)
             {
+                if(obj.participant == id) {
                 QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id, obj.name, obj.active, obj.answeramount);
                 vms.Add(vm);
+                }
             }
 
             return View(vms);
@@ -157,6 +159,30 @@ namespace KliPr.Controllers
             //ObjectId selectedobjid = new ObjectId(selected);
 
             return RedirectToAction("Index", "Patient", new { id = selected });
+        }
+
+        [HttpGet]
+        public IActionResult Participant()
+        {
+            //var questionnaires = objds.GetAll();
+
+            //List<QuestionnaireListViewModel> vms = new List<QuestionnaireListViewModel>();
+            //foreach (var obj in questionnaires)
+            //{
+            //    QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id, obj.name, obj.active, obj.answeramount);
+            //    vms.Add(vm);
+            //}
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Participant(FormCollection fc)
+        {
+            int selected = Int32.Parse(Request.Form["radioparti"]);
+            //ObjectId selectedobjid = new ObjectId(selected);
+
+            return RedirectToAction("SelectQuestionnaire", "Patient", new { id = selected });
         }
     }
 }

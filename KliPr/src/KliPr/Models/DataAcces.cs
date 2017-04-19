@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace KliPr.Models
 {
@@ -28,6 +29,17 @@ namespace KliPr.Models
             var documents = _db.GetCollection<Questionnaire>("Questionnaires").Find(new BsonDocument()).ToList();
 
             return documents;
+        }
+
+        public List<string> GetNameList()
+        {
+            var documents = GetAll();
+            List<string> list = new List<string>();
+            foreach(var doc in documents)
+            {
+                list.Add(doc.name);
+            }
+            return list;
         }
 
         public void delete(ObjectId q)

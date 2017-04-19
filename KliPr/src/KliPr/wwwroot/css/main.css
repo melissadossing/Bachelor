@@ -164,12 +164,12 @@ display:flex
     max-width: 400px;
 }
 
-#sel{
+#sel,#henvender{
     max-width: 200px;
 }
 
-#quesionnairename{
-    max-width: 450px;
+#questionnairename{
+    max-width: 350px;
 }
 
 .t2{
