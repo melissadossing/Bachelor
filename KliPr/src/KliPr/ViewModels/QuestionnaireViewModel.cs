@@ -12,6 +12,8 @@ namespace KliPr.ViewModels
         public string name { get; set; }
         public bool active { get; set; }
 
+        public int participant { get; set; }
+
 
         public string q0name { get; set; }
         public string q0t0a0 { get; set; }
@@ -171,5 +173,73 @@ namespace KliPr.ViewModels
         public int q13t1a1 { get; set; }
         public bool needanswer13 { get; set; }
         public int q13type { get; set; }
+
+        public string q14name { get; set; }
+        public string q14t0a0 { get; set; }
+        public string q14t0a1 { get; set; }
+        public string q14t0a2 { get; set; }
+        public string q14t0a3 { get; set; }
+        public string q14t0a4 { get; set; }
+        public int q14t1a0 { get; set; }
+        public int q14t1a1 { get; set; }
+        public bool needanswer14 { get; set; }
+        public int q14type { get; set; }
+
+        public string q15name { get; set; }
+        public string q15t0a0 { get; set; }
+        public string q15t0a1 { get; set; }
+        public string q15t0a2 { get; set; }
+        public string q15t0a3 { get; set; }
+        public string q15t0a4 { get; set; }
+        public int q15t1a0 { get; set; }
+        public int q15t1a1 { get; set; }
+        public bool needanswer15 { get; set; }
+        public int q15type { get; set; }
+
+        public string q16name { get; set; }
+        public string q16t0a0 { get; set; }
+        public string q16t0a1 { get; set; }
+        public string q16t0a2 { get; set; }
+        public string q16t0a3 { get; set; }
+        public string q16t0a4 { get; set; }
+        public int q16t1a0 { get; set; }
+        public int q16t1a1 { get; set; }
+        public bool needanswer16 { get; set; }
+        public int q16type { get; set; }
+
+        public string q17name { get; set; }
+        public string q17t0a0 { get; set; }
+        public string q17t0a1 { get; set; }
+        public string q17t0a2 { get; set; }
+        public string q17t0a3 { get; set; }
+        public string q17t0a4 { get; set; }
+        public int q17t1a0 { get; set; }
+        public int q17t1a1 { get; set; }
+        public bool needanswer17 { get; set; }
+        public int q17type { get; set; }
+
+        public string q18name { get; set; }
+        public string q18t0a0 { get; set; }
+        public string q18t0a1 { get; set; }
+        public string q18t0a2 { get; set; }
+        public string q18t0a3 { get; set; }
+        public string q18t0a4 { get; set; }
+        public int q18t1a0 { get; set; }
+        public int q18t1a1 { get; set; }
+        public bool needanswer18 { get; set; }
+        public int q18type { get; set; }
+
+        public string q19name { get; set; }
+        public string q19t0a0 { get; set; }
+        public string q19t0a1 { get; set; }
+        public string q19t0a2 { get; set; }
+        public string q19t0a3 { get; set; }
+        public string q19t0a4 { get; set; }
+        public int q19t1a0 { get; set; }
+        public int q19t1a1 { get; set; }
+        public bool needanswer19 { get; set; }
+        public int q19type { get; set; }
+
+
     }
 }

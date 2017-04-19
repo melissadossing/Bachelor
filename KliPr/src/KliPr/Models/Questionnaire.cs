@@ -19,7 +19,7 @@ namespace KliPr.Models
         public string name { get; set; }
         public bool active { get; set; }
         public int answeramount { get; set; }    
-        
+        public int participant { get; set; }           
         public List<Question> Questions { get; set; }
     }
 }

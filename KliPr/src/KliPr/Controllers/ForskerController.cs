@@ -48,8 +48,8 @@ namespace KliPr.Controllers
         public IActionResult Create(QuestionnaireViewModel q)
         {
             var mapper = new ViewModelMapper();
-            var question = mapper.Map(q);
-            objds.Create(question);
+            var questionnaire = mapper.Map(q);
+            objds.Create(questionnaire);
             return RedirectToAction("Dashboard", "Forsker");
         }
 

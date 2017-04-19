@@ -139,7 +139,7 @@ namespace KliPr
 
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Patient}/{action=SelectQuestionnaire}/{id?}");
+                    template: "{controller=Patient}/{action=Participant}/{id?}");
             });
         }
     }
