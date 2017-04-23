@@ -13,7 +13,7 @@
     </script>
 </head>
 
-<div class="col-sm-8 col-sm-offset-2 containerwrapper">
+<div class="col-md-8 col-md-offset-2 containerwrapper">
 
     @if(@Model!=null) { 
             <h1 class="text-center">@Model.name</h1>
@@ -58,7 +58,7 @@
                                     @if (e.type == 2)
                                     {
                                         <div class="col-xs-8 nopadding">
-                                            <textarea class="form-control noresize" rows="5" name="singletext_@Model.Id @e.Id"></textarea>
+                                            <textarea class="form-control noresize" rows="5" placeholder="Indtast dit svar her" name="singletext_@Model.Id @e.Id"></textarea>
                                         </div>
                                     }
 
@@ -66,7 +66,7 @@
                                     <div class="col-xs-8 nopadding">
                                         Uddybelse af svar
                                         <br />
-                                        <textarea class="form-control noresize" rows="3" name="elaboration_@Model.Id @e.Id"></textarea>
+                                        <textarea class="form-control noresize" placeholder="Indtast eventuel uddybelse af dit svar her" rows="3" name="elaboration_@Model.Id @e.Id"></textarea>
                                     </div>
                                     }
 

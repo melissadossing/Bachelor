@@ -1,10 +1,18 @@
-﻿@{
+﻿<script>var names = []</script>
+
+@{
     ViewData["Title"] = "Opret spørgeskema";
     int q_amt = 20;
     int patient = (int)KliPr.Enum.Participant.Patient;
     int pårørende = (int)KliPr.Enum.Participant.Pårørende;
     var DA = new KliPr.Models.DataAccess();
     var list = DA.GetNameList();
+
+    foreach(var name in list)
+    {
+        <script> names.push("@name") </script>
+    }
+
 
 }
 <head>
@@ -924,8 +932,9 @@
                 <button type="button" id="btnBack" value="back" class="btn btn-primary btn-lg pull-left" onclick="location.href='@Url.Action("Dashboard", "Forsker")'">Tilbage</button>
             </div>
             <div class="col-xs-2 text-center">
-                <button type="button" class="btn btn-default " id="plusbtn">
-                    <span class="glyphicon glyphicon-plus btn-lg" aria-hidden="true"></span>
+                <button type="button" class="btn btn-primary btn-lg " id="plusbtn">
+                    Tilføj spørgsmål
+                    @*<span class="glyphicon glyphicon-plus btn-lg" aria-hidden="true"></span>*@
                 </button>
             </div>
             <div class="col-xs-5 nopadding">
@@ -943,7 +952,20 @@
 
             if (confirm('Opret spørgeskema?')) {
                 if (inputname.value.length > 0) {
+                    var exists = false;
+                    for(var i = 0; i<names.length; i++){
+                        if(inputname.value == names[i])
+                            exists = true;
+                    }
+                    if(!exists){
                     $('#questioncontainer').submit();
+                    }
+                    else{
+                        alert('Spørgeskema eksisterer allerede med dette navn. Indtast et andet navn.')
+                    
+                    }
+
+
                 } else {
                     alert('Navn på spørgeskema er ikke udfyldt. Spørgeskemaet skal have et navn.');
                 }
@@ -966,6 +988,16 @@
             myOpts[count + 1].style.display = 'block'
 
             count++;
+
+            for (var i = 0; i < @q_amt; i++)
+            {      
+                $("#q" + i).hide();
+                
+            }
+
+            $("div.floatleft select").val(count);
+            $("#q" + count).show();
+
         }
     }
 

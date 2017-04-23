@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using MongoDB.Bson;
 using KliPr.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Text;
 
 namespace KliPr.Controllers
 {
@@ -137,6 +138,40 @@ namespace KliPr.Controllers
             //ObjectId selectedobjid = new ObjectId(selected);
 
             return RedirectToAction("ShowChart", "Forsker", new { id = selected });
+        }
+
+        [HttpGet]
+        public IActionResult Chooseforexport()
+        {
+            var questionnaires = objds.GetAll();
+
+            List<QuestionnaireListViewModel> vms = new List<QuestionnaireListViewModel>();
+            foreach (var obj in questionnaires)
+            {
+                QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id, obj.name, obj.active, obj.answeramount);
+                vms.Add(vm);
+            }
+
+            return View(vms);
+        }
+
+        [HttpPost]
+        public IActionResult Chooseforexport(FormCollection fc)
+        {
+            string selected = Request.Form["ObjectID"];
+            //ObjectId selectedobjid = new ObjectId(selected);
+
+            return RedirectToAction("DownloadQFile", "Forsker", new { id = selected });
+        }
+
+        [HttpGet]
+        public ActionResult DownloadQFile(string id)
+        {
+            //ObjectId selectedobjid = new ObjectId(selected);
+            var selected = objds.GetById(new ObjectId(id));
+
+            return File(Encoding.UTF8.GetBytes("hello its me"),
+                 "text/csv","letsgo.csv");
         }
     }
 }
