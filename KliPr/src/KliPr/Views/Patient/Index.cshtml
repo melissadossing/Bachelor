@@ -122,22 +122,17 @@
             var page = document.getElementById("pagenr");
             page.innerHTML = currentpage + "/" + divs.length;
 
-        });
+            var rightglyph = document.getElementById("glyphright");
+            var leftglyph = document.getElementById("glyphleft");
+            leftglyph.style.visibility = "hidden";
 
-
-        var radios = document.querySelectorAll('input[type=radio]');
-
-        function changeHandler(event) {
-            if(atLeastOneRadio()==@radioamt)
+            if (divs.length < 2)
             {
+                rightglyph.style.visibility = "hidden";
                 var btn = document.getElementById("submitbtn")
                 btn.style.visibility = "visible";
-
             }
-        }
 
-        Array.prototype.forEach.call(radios, function (radio) {
-            radio.addEventListener('change', changeHandler);
         });
 
         document.getElementById("glyphright").onclick = function () { rightglyph() };
@@ -145,8 +140,9 @@
 
         function rightglyph() {
             var divs = document.getElementsByName("QDIV");
-
-
+            var rightglyph = document.getElementById("glyphright");
+            var leftglyph = document.getElementById("glyphleft");
+            
             if (currentpage < divs.length) {
                 divs[currentpage - 1].style.display = 'none';
                 currentpage++;
@@ -154,11 +150,26 @@
 
                 var page = document.getElementById("pagenr");
                 page.innerHTML = currentpage + "/" + divs.length;
+                
             }
+
+            if(currentpage == divs.length){
+                rightglyph.style.visibility = "hidden";
+                var btn = document.getElementById("submitbtn")
+                btn.style.visibility = "visible";
+            
+            }
+
+            leftglyph.style.visibility = "visible";
+
+
         }
 
         function leftglyph() {
             if (currentpage > 1) {
+                var rightglyph = document.getElementById("glyphright");
+                var leftglyph = document.getElementById("glyphleft");
+
                 var divs = document.getElementsByName("QDIV");
                 divs[currentpage - 1].style.display = 'none';
                 currentpage--;
@@ -166,10 +177,14 @@
                 var page = document.getElementById("pagenr");
                 page.innerHTML = currentpage + "/" + divs.length;
 
+                rightglyph.style.visibility = "visible";
+
+                if(currentpage == 1){
+                    leftglyph.style.visibility = "hidden";
+            
+                }
+
             }
-        }
-        function atLeastOneRadio() {
-            return ($('input[type=radio]:checked').size());
         }
     </script>
 

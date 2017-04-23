@@ -26,6 +26,10 @@ body {
 .minheight{
     min-height: 200px;
 }
+
+.floatright{
+    margin-left: auto;
+}
 .containerwrapper{
     background-color: white;
     padding-top: 69px;
@@ -92,10 +96,16 @@ display:flex
 }
 
 .btnmargintop5{
-    margin-top: 40px;
+    margin-top: 33px;
 }
 .topmargin2{
     margin-top:8%;
+}
+
+.rightparent{
+    display: flex;
+    flex-direction: column;           
+    align-items: center;
 }
 
 #questionillu{
