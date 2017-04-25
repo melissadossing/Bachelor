@@ -11,6 +11,17 @@
 
 html, body { height: 100%; }
 
+.modal {
+   position: absolute;
+   top: 45px;
+   right: 100px;
+   bottom: 0;
+   left: 0;
+   z-index: 10040;
+   overflow: auto;
+   overflow-y: auto;
+}
+
 body {
     background-color: var(--grey);
 }
@@ -95,6 +106,10 @@ display:flex
     margin-top: 10px;
 }
 
+.radiomargin{
+    margin-bottom: 15px;
+}
+
 .btnmargintop5{
     margin-top: 33px;
 }
@@ -153,7 +168,7 @@ display:flex
 }
 
 .glyphbig{
-    font-size: 3em;
+    font-size: 4em;
 }
 
 

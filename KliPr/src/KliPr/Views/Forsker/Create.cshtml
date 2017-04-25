@@ -958,7 +958,26 @@
                             exists = true;
                     }
                     if(!exists){
-                    $('#questioncontainer').submit();
+
+                        var nameempty = true;
+
+                        for(var i = 0; i<@q_amt; i ++){
+                            var qname1 = document.getElementById("q" + i + "nameid");
+                            if(qname1.value.length >0){
+                                nameempty = false;
+                            }
+                            
+                        
+                        }
+
+                        if(!nameempty){
+                            $('#questioncontainer').submit();
+                        }
+                        else{
+                            alert('Du har ikke indtastet nogle spørgsmål.')
+                        
+                        }
+                    
                     }
                     else{
                         alert('Spørgeskema eksisterer allerede med dette navn. Indtast et andet navn.')
@@ -1011,8 +1030,6 @@
         var sel = document.getElementById("sel");
         var selval = sel.options[sel.selectedIndex].value;
 
-        console.log("selval", selval);
-        console.log("count", count);
 
         if (selval > count) {
             $("div.floatleft select").val(count);
@@ -1031,7 +1048,6 @@
     $(document).ready(function () {
 
         $("#sel").change(function () {
-            console.log("sel changed!");
             var i = $('option:selected', this).index();
 
             $("#q0").hide();

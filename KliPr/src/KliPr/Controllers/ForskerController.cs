@@ -30,14 +30,14 @@ namespace KliPr.Controllers
         {
             var questionnaires = objds.GetAll();
 
-            List<QuestionnaireListViewModel> vms = new List<QuestionnaireListViewModel>();
-            foreach (var obj in questionnaires)
-            {
-                QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id, obj.name, obj.active, obj.answeramount);
-                vms.Add(vm);
-            }
+            //List<QuestionnaireListViewModel> vms = new List<QuestionnaireListViewModel>();
+            //foreach (var obj in questionnaires)
+            //{
+            //    QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id, obj.name, obj.active, obj.answeramount);
+            //    vms.Add(vm);
+            //}
 
-            return View(vms);
+            return View(questionnaires);
         }
 
         [HttpGet]

@@ -4,7 +4,7 @@
     ViewData["Title"] = "Vælg spørgeskema";
 
 }
-<div class="col-sm-8 col-sm-offset-2 thetopmargin">
+<div class="thetopmargin">
     <h1 class="text-center">Vælg spørgeskema:</h1>
     <br />
     <br />
@@ -13,12 +13,24 @@
             <div class="form-group">
                 <div class="table-responsive ">
                     <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Navn</th>
+                                <th>Oprettelsesdato</th>
+                                <th>Antal besvarelser</th>
+                                <th></th>
+                            </tr>
+                        </thead>
                         <tbody>
                             @{
                                 foreach (var q in Model)
                                 {
+                                    var xtime = new DateTime(1970, 1, 1).AddSeconds(q.Id.Timestamp).ToString("dd/MM/yyyy");
+
                                     <tr>
                                         <td>@q.name</td>
+                                        <td>@xtime</td>
+                                        <td>@q.answeramount</td>
                                         <td>
                                             @{
 
@@ -35,9 +47,7 @@
                     </table>
                 </div>
                 <div class="text-center col-xs-12">
-                    <br />
-                    <br />
-                    <button type="submit" class="btn btn-primary btn-lg" style="visibility:hidden" id="okbtn" form="postform">Vis</button>
+                    <button type="submit" class="btn btn-primary btn-lg" disabled id="okbtn" form="postform">Vis</button>
                 </div>
             </div>
         </form>
@@ -52,7 +62,7 @@
         if(atLeastOneRadio()>0)
         {
             var btn = document.getElementById("okbtn")
-            btn.style.visibility = "visible";
+            btn.disabled = false;
 
         }
     }

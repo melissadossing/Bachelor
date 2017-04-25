@@ -1,9 +1,79 @@
-﻿@model List<KliPr.ViewModels.QuestionnaireListViewModel>
+﻿@model List<KliPr.Models.Questionnaire>
 
 @{
     ViewData["Title"] = "Dashboard";
 
 }
+
+@foreach (var q in Model)
+{
+    var count = 0;
+    <div class="modal fade" id="modal_@q.Id" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">@q.name</h4>
+                </div>
+                <div class="modal-body">
+                    @foreach (var e in q.Questions)
+                    {
+                        count++;
+                        <div name="QDIV">
+                            <h4>@count. @e.text</h4>
+                            @if (e.type == 0)
+                            {
+
+                                @foreach (var ta in e.textanswers)
+                                {
+                                    if (ta.text != null)
+                                    {
+                                        <div class="radio">
+                                            <label><input type="radio" disabled required=required name="textanswer_@e.Id" value=@ta.Id>@ta.text</label>
+                                        </div>
+
+                                    }
+
+                                }
+                            }
+                            @if (e.type == 1)
+                            {
+
+                                <input type="range" disabled max=@e.t1a1 min=@e.t1a0 onchange="document.getElementById('range_@e.Id').innerHTML = this.value;"
+                                       step="1" name="numberanswer_@e.Id" id="rangeVal" value="1">
+                                <em id="range_@e.Id" style="font-style: normal;">1</em>
+                            }
+
+                            @if (e.type == 2)
+                            {
+                                <div>
+                                    <textarea disabled class="form-control noresize" rows="5" placeholder="Indtast dit svar her" name="singletext_@e.Id"></textarea>
+                                </div>
+                            }
+
+                            @if (e.type != 2)
+                            {
+                                <div>
+                                    Uddybelse af svar
+                                    <br />
+                                    <textarea disabled class="form-control noresize" placeholder="Indtast eventuel uddybelse af dit svar her" rows="3" name="elaboration_@e.Id"></textarea>
+                                </div>
+                            }
+
+                        </div>
+                        <br />
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Luk</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+
 <div class="thetopmargin">
     <div class="col-md-8 col-sm-9 col-xs-9"> 
         <div id="questionillu">
@@ -15,6 +85,7 @@
                             <th>Navn</th>
                             <th>Oprettelsesdato</th>
                             <th>Antal besvarelser</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,6 +98,7 @@
                                     <td>@q.name</td>
                                     <td>@xtime</td>
                                     <td>@q.answeramount</td>
+                                    <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_@q.Id">Se spørgeskema</button></td>
                                 </tr>
                             }
                         }

@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Vis grafer";
     var cg = new KliPr.Models.Colorgen();
+    var xtime = new DateTime(1970, 1, 1).AddSeconds(@Model.Id.Timestamp).ToString("dd/MM/yyyy");
 
     List<KliPr.Models.ChartPreparer> piemodels = new List<KliPr.Models.ChartPreparer>();
     foreach(var q in Model.Questions)
@@ -20,6 +21,8 @@
 <div class="thetopmargin">
     @{
         <h1>@Model.name</h1>
+        <h3>@Model.answeramount svar</h3>
+        <h3>Oprettet: @xtime</h3>
         <div class="nopadding col-md-6">
             @foreach (var obj in piemodels)
             {

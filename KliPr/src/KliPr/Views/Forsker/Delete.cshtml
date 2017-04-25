@@ -3,6 +3,10 @@
 @{
     ViewData["Title"] = "Slet spørgeskema";
 }
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+</head>
+
 <div class="thetopmargin">
     <h1 class="text-center">Slet spørgeskema</h1>
     <div class="col-md-8 col-md-offset-2">
@@ -30,7 +34,7 @@
                                         <td>@xtime</td>
                                         <td>@q.answeramount</td>
                                         <td>
-                                            <input type="checkbox" value=@q.Id name="ObjectID">
+                                            <input type="checkbox" value=@q.Id id="@q.name" name="ObjectID">
                                         </td>
                                     </tr>
                                 }
@@ -40,11 +44,67 @@
                     </table>
                 </div>
                 <div class="text-center col-xs-12">
-                    <button type="submit" class="btn btn-primary btn-lg" form="postform">Slet valgte</button>
+                    <button type="button" class="btn btn-primary btn-lg" id="okbtn" disabled>Slet valgte</button>
                 </div>
             </div>
         </form>
     </div>
 </div>
+
+<script type="text/javascript">
+
+
+    $(function () {
+        $("#okbtn").click(function () {
+
+            var inputname = document.getElementById("questionnairename");
+
+            var checkedBoxes = document.querySelectorAll('input[name=ObjectID]:checked');
+
+            var selstring = "";
+
+            for (var i = 0; i < checkedBoxes.length; i++) {
+                selstring = selstring + "\n" + checkedBoxes[i].id;
+
+            }
+
+
+
+            if (confirm('Slet disse spørgeskemaer?' + selstring)) {
+
+                $('#postform').submit();
+
+            } else {
+                // Do nothing!
+            }
+
+
+        });
+    });
+
+    var boxes = document.querySelectorAll('input[type=checkbox]');
+    var btn = document.getElementById("okbtn")
+
+    function changeHandler(event) {
+        if(atLeastOneCheckbox()>0)
+        {
+            
+            btn.disabled = false;
+
+        }
+        else {
+            btn.disabled = true;
+
+        }
+    }
+
+    Array.prototype.forEach.call(boxes, function (box) {
+        box.addEventListener('change', changeHandler);
+    });
+
+    function atLeastOneCheckbox() {
+        return ($('input[type=checkbox]:checked').size());
+    }
+</script>
 
 

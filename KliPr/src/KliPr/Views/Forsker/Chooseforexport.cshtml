@@ -1,11 +1,11 @@
 ﻿@model List<KliPr.ViewModels.QuestionnaireListViewModel>
 
 @{
-    ViewData["Title"] = "Vælg spørgeskema til besvarelse";
+    ViewData["Title"] = "Vælg spørgeskema";
 
 }
-<div class="col-md-8 col-md-offset-2 containerwrapper">
-    <h1 class="text-center">Vælg spørgeskema:</h1>
+<div class="thetopmargin">
+    <h1 class="text-center">Vælg spørgeskema til eksport:</h1>
     <br />
     <br />
     <div class="col-md-10 col-md-offset-1">
@@ -13,12 +13,24 @@
             <div class="form-group">
                 <div class="table-responsive ">
                     <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Navn</th>
+                                <th>Oprettelsesdato</th>
+                                <th>Antal besvarelser</th>
+                                <th></th>
+                            </tr>
+                        </thead>
                         <tbody>
                             @{
                                 foreach (var q in Model)
                                 {
+                                    var xtime = new DateTime(1970, 1, 1).AddSeconds(q.Id.Timestamp).ToString("dd/MM/yyyy");
+
                                     <tr>
-                                        <td style="font-size: 16px">@q.name</td>
+                                        <td>@q.name</td>
+                                        <td>@xtime</td>
+                                        <td>@q.answeramount</td>
                                         <td>
                                             @{
 
@@ -37,7 +49,7 @@
                 <div class="text-center col-xs-12">
                     <br />
                     <br />
-                    <button type="submit" class="btn btn-primary btn-lg" disabled id="okbtn" form="postform">OK</button>
+                    <button type="submit" class="btn btn-primary btn-lg" disabled id="okbtn" form="postform">Eksportér</button>
                 </div>
             </div>
         </form>
