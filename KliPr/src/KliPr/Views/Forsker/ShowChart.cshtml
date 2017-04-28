@@ -45,9 +45,10 @@
                     <text style="font-size: 1.3em">Uddybende svar:</text>
                     @foreach (var answer in obj.answerlist)
                     {
+                        if (answer.elaboration != null && answer.elaboration != "") {
                         <br />
                         <text><text style="font-size: 1.0em">"@answer.elaboration"</text></text>
-
+                        }
                     }
 
 
@@ -67,9 +68,10 @@
                         {
                             @foreach (var answer in obj.answerlist)
                             {
-                                <br />
-                                <text><text style="font-size: 1.0em">"@answer.singletext"</text></text>
-
+                                if (answer.singletext != null && answer.singletext != "") {
+                                    <br />
+                                    <text><text style="font-size: 1.0em">"@answer.singletext"</text></text>
+                                }
                             }
                         }
                     </div>

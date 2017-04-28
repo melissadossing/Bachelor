@@ -129,7 +129,10 @@ namespace KliPr.Controllers
                 }
             }
 
-            var succes2 = await objds.incAnswerAmt(new ObjectId(questionnaireIDres));
+            if (questionnaireIDres != null)
+            {
+                var succes2 = await objds.incAnswerAmt(new ObjectId(questionnaireIDres));
+            }
 
             return RedirectToAction("Succes", "Patient");
         }

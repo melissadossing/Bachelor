@@ -4,23 +4,16 @@
   --blue: #256575;
   --darkblue: #12404A;
   --lightblue: #94C5D1;
-  --grey: #CCCCCC;
+  --grey: #DDD6C8;
   --darkgrey: #9E9E9E;
-
+  --midred:#990033;
+  --middark:#3F2805;
+  --midkoks:#806854;
 }
 
 html, body { height: 100%; }
 
-.modal {
-   position: absolute;
-   top: 45px;
-   right: 100px;
-   bottom: 0;
-   left: 0;
-   z-index: 10040;
-   overflow: auto;
-   overflow-y: auto;
-}
+
 
 body {
     background-color: var(--grey);
@@ -140,15 +133,19 @@ display:flex
     margin-top: 5px;
 }
 .rc0{
-    background-color:var(--lightblue);
+    background-color:var(--midkoks);
     border-radius:5px;
     border: 2px solid #ffffff;
 }
 .rc1{
-    background-color:var(--lightblue);
+    background-color:var(--midkoks);
     border-radius:5px;
     border: 2px solid #ffffff;
     display: none;
+}
+
+.labelonbg{
+    color:white;
 }
 
 .nondisplay{
@@ -162,6 +159,9 @@ display:flex
     display: none;
 }
 
+.smalltopmargin{
+    margin-top: 40px;
+}
 
 .glyphmed{
     font-size: 1.6em;

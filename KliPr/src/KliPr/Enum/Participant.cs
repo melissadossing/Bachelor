@@ -8,6 +8,8 @@ namespace KliPr.Enum
     public enum Participant
     {
         Pårørende = 0,
-        Patient = 1
+        Patient = 1,
+        Sundhedsprofessionel = 2,
+        Administrator = 3
     }
 }

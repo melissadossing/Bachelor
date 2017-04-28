@@ -40,7 +40,7 @@
                                             if (ta.text != null)
                                             {
                                                 <div class="radio radiomargin">
-                                                    <label style="font-size: 16px"><input type="radio" required=required name="textanswer_@Model.Id @e.Id" value=@ta.Id>@ta.text</label>
+                                                    <label style="font-size: 16px"><input type="radio"  required name="textanswer_@Model.Id @e.Id" value=@ta.Id>@ta.text</label>
                                                 </div>
 
                                             }
@@ -58,14 +58,12 @@
                                     @if (e.type == 2)
                                     {
                                         <div class="col-xs-8 nopadding">
-                                            <textarea class="form-control noresize" rows="5" placeholder="Indtast dit svar her" name="singletext_@Model.Id @e.Id"></textarea>
+                                            <textarea class="form-control noresize" rows="5" placeholder="Indtast dit svar her" required name="singletext_@Model.Id @e.Id"></textarea>
                                         </div>
                                     }
 
                                     @if (e.type != 2) {
                                     <div class="col-xs-8 nopadding" style="font-size: 16px">
-                                        Uddybelse af svar
-                                        <br />
                                         <textarea class="form-control noresize" placeholder="Indtast eventuel uddybelse af dit svar her" rows="3" name="elaboration_@Model.Id @e.Id"></textarea>
                                     </div>
                                     }
@@ -91,7 +89,7 @@
                 </div>
             </div>
             <div class="text-center topmargin">
-                <button id="submitbtn" type="submit" value="Submit" class="btn btn-primary btn-lg" style="visibility:hidden">Indsend svar</button>
+                <button id="submitbtn" type="button" class="btn btn-primary btn-lg" style="visibility:hidden">Indsend svar</button>
 
             </div>
             <br />
@@ -112,6 +110,46 @@
 
 
     <script type="text/javascript">
+        $(function () {
+            $("#submitbtn").click(function () {
+
+                console.log("clicked");
+                var submitme = true;
+                $(':radio').each(function () { // loop through each radio button
+                    nam = $(this).attr('name'); // get the name of its set
+                    if (submitme && !$(':radio[name="' + nam + '"]:checked').length) {
+                        // see if any button in the set is checked
+                        submitme = false;
+                    }
+                });
+
+                var lissst = document.getElementById("questioncontainer").querySelectorAll("[required]");
+                var reqtexareas = [];
+
+                for (var i = 0; i < lissst.length; i++) {
+                    if (lissst[i].tagName == 'TEXTAREA') {
+                        reqtexareas.push(lissst[i]);
+
+                    }
+                }
+
+                for (var i = 0; i < reqtexareas.length; i++) {
+                    if (reqtexareas[i].value == "") {
+                        submitme = false;
+
+                    }
+                }
+
+                console.log(submitme);
+                if(submitme == true){
+                    $('#questioncontainer').submit();
+                }
+                else {
+                    alert("Du har ikke udfyldt alle spørgsmål!");
+
+                }
+            });
+    });
         $(document).ready(function () {
             var divs = document.getElementsByName("QDIV");
             divs[0].style.display = 'block';
@@ -141,7 +179,7 @@
         function rightglyph() {
             var divs = document.getElementsByName("QDIV");
             var rightglyph = document.getElementById("glyphright");
-            var leftglyph = document.getElementById("glyphleft");
+            var leftglyph = document.getElementById("glyphleft");           
             
             if (currentpage < divs.length) {
                 divs[currentpage - 1].style.display = 'none';
