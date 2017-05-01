@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using KliPr.Models;
 
-namespace KliPr.Models
+namespace KliPr.DAL
 {
     public class DataAccess
     {

@@ -8,6 +8,7 @@ using KliPr.Models;
 using MongoDB.Bson;
 using KliPr.Enum;
 using KliPr.ViewModels;
+using KliPr.DAL;
 
 namespace KliPr.Controllers
 {
@@ -147,7 +148,7 @@ namespace KliPr.Controllers
             foreach (var obj in questionnaires)
             {
                 if(obj.participant == id) {
-                QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id, obj.name, obj.active, obj.answeramount);
+                QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id, obj.name, obj.active, obj.answeramount,obj.participant);
                 vms.Add(vm);
                 }
             }

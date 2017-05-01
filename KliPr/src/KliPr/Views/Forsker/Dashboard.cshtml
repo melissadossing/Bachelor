@@ -3,6 +3,8 @@
 @{
     ViewData["Title"] = "Dashboard";
 
+    
+
 }
 
 @foreach (var q in Model)
@@ -75,7 +77,7 @@
 
 
 <div class="thetopmargin">
-    <div class="col-md-8 col-sm-9 col-xs-9"> 
+    <div class="col-md-9 col-xs-12 margin-bot"> 
         <div id="questionillu">
             <h1>Aktuelle spørgeskemaer:</h1>
             <div class="table-responsive ">
@@ -83,6 +85,7 @@
                     <thead>
                         <tr>
                             <th>Navn</th>
+                            <th>Kategori</th>
                             <th>Oprettelsesdato</th>
                             <th>Antal besvarelser</th>
                             <th></th>
@@ -93,9 +96,12 @@
                             foreach (var q in Model)
                             {
                                 var xtime = new DateTime(1970, 1, 1).AddSeconds(q.Id.Timestamp).ToString("dd/MM/yyyy");
+                                KliPr.Enum.Participant enump = (KliPr.Enum.Participant)q.participant;
+                                string stringValue = enump.ToString();
 
                                 <tr>
                                     <td>@q.name</td>
+                                    <td>@stringValue</td>
                                     <td>@xtime</td>
                                     <td>@q.answeramount</td>
                                     <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_@q.Id">Se spørgeskema</button></td>
@@ -109,17 +115,17 @@
 
         </div>
     </div>
-    <div class="col-md-4 col-sm-3 col-xs-3">
-        <div class="row-md-4">
+    <div class="col-md-offset-0 col-xs-offset-3 col-xs-6 col-md-3">
+        <div class="row-xs-12">
             <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("Create", "Forsker")'">Opret spørgeskema</button>
         </div>
-        <div class="row-md-4 topmargin">
+        <div class="row-xs-12 topmargin">
             <button type="button" class="btn btn-primary btn-lg btn-block topmargin" onclick="location.href='@Url.Action("Delete", "Forsker")'">Slet spørgeskema</button>
         </div>
-        <div class="row-md-4 topmargin2">
+        <div class="row-xs-12 topmargin2">
             <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("Chooseforchart", "Forsker")'">Vis resultater</button>
         </div>
-        <div class="row-md-4 topmargin">
+        <div class="row-xs-12 topmargin">
             <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='@Url.Action("Chooseforexport", "Forsker")'">Eksportér data</button>
         </div>
     </div>

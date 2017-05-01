@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using System;
+using KliPr.DAL;
 
 namespace KliPr
 {

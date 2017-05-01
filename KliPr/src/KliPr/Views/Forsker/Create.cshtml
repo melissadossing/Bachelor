@@ -7,7 +7,7 @@
     int pårørende = (int)KliPr.Enum.Participant.Pårørende;
     int sundhedspro = (int)KliPr.Enum.Participant.Sundhedsprofessionel;
     int admin = (int)KliPr.Enum.Participant.Administrator;
-    var DA = new KliPr.Models.DataAccess();
+    var DA = new KliPr.DAL.DataAccess();
     var list = DA.GetNameList();
 
     foreach(var name in list)
@@ -989,7 +989,7 @@
 
 
                 } else {
-                    alert('Navn på spørgeskema er ikke udfyldt. Spørgeskemaet skal have et navn.');
+                    alert('Navn på spørgeskema er ikke udfyldt.');
                 }
             } else {
                 // Do nothing!

@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using MongoDB.Bson;
+using KliPr.Models;
 
-namespace KliPr.Models
+namespace KliPr.Helpers
 {
     public class ChartPreparer
     {

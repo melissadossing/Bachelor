@@ -15,11 +15,15 @@
     <h3>Hvem er du?</h3>
     <form method="post" id="postform">
         <div class="radio">
+            <br />
             <label style="font-size: 16px"><input type="radio" required=required name="radioparti" value=@patient>@KliPr.Enum.Participant.Patient</label>
+            <br />
             <br />
             <label style="font-size: 16px"><input type="radio" required=required name="radioparti" value=@pårørende>@KliPr.Enum.Participant.Pårørende</label>
             <br />
+            <br />
             <label style="font-size: 16px"><input type="radio" required=required name="radioparti" value=@sundhedsprof>@KliPr.Enum.Participant.Sundhedsprofessionel</label>
+            <br />
             <br />
             <label style="font-size: 16px"><input type="radio" required=required name="radioparti" value=@admin>@KliPr.Enum.Participant.Administrator</label>
         </div>

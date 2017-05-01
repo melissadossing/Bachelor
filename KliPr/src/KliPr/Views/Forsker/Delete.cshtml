@@ -8,16 +8,18 @@
 </head>
 
 <div class="thetopmargin">
-    <h1 class="text-center">Slet spørgeskema</h1>
-    <div class="col-md-8 col-md-offset-2">
-        <h2>Gemte spørgeskemaer:</h2>
-        <form method="post" id="postform">
+    <h1 class="text-center">Slet spørgeskema:</h1>
+    <br />
+    <br />
+    <div class="col-md-10 col-md-offset-1">
+        <form method="post" id="postform" class="questionillu">
             <div class="form-group">
-                <div class="table-responsive ">
+                <div class="table-responsive largetext">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>Navn</th>
+                                <th>Kategori</th>
                                 <th>Oprettelsesdato</th>
                                 <th>Antal besvarelser</th>
                                 <th></th>
@@ -28,9 +30,11 @@
                                 foreach (var q in Model)
                                 {
                                     var xtime = new DateTime(1970, 1, 1).AddSeconds(q.Id.Timestamp).ToString("dd/MM/yyyy");
-
+                                    KliPr.Enum.Participant enump = (KliPr.Enum.Participant)q.participant;
+                                    string stringValue = enump.ToString();
                                     <tr>
                                         <td>@q.name</td>
+                                        <td>@stringValue</td>
                                         <td>@xtime</td>
                                         <td>@q.answeramount</td>
                                         <td>
@@ -43,11 +47,12 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="text-center col-xs-12">
-                    <button type="button" class="btn btn-primary btn-lg" id="okbtn" disabled>Slet valgte</button>
-                </div>
+
             </div>
         </form>
+        <div class="text-center col-xs-12 thetopmarginsm">
+            <button type="button" class="btn btn-primary btn-lg" id="okbtn" disabled>Slet valgte</button>
+        </div>
     </div>
 </div>
 

@@ -8,14 +8,15 @@
     <h1 class="text-center">Vælg spørgeskema:</h1>
     <br />
     <br />
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-10 col-md-offset-1 questionillu">
         <form method="post" id="postform">
             <div class="form-group">
-                <div class="table-responsive ">
+                <div class="table-responsive largetext">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>Navn</th>
+                                <th>Kategori</th>
                                 <th>Oprettelsesdato</th>
                                 <th>Antal besvarelser</th>
                                 <th></th>
@@ -26,9 +27,11 @@
                                 foreach (var q in Model)
                                 {
                                     var xtime = new DateTime(1970, 1, 1).AddSeconds(q.Id.Timestamp).ToString("dd/MM/yyyy");
-
+                                    KliPr.Enum.Participant enump = (KliPr.Enum.Participant)q.participant;
+                                    string stringValue = enump.ToString();
                                     <tr>
                                         <td>@q.name</td>
+                                        <td>@stringValue</td>
                                         <td>@xtime</td>
                                         <td>@q.answeramount</td>
                                         <td>
@@ -46,11 +49,12 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="text-center col-xs-12">
-                    <button type="submit" class="btn btn-primary btn-lg" disabled id="okbtn" form="postform">Vis</button>
-                </div>
+
             </div>
         </form>
+    </div>
+    <div class="text-center col-xs-12 thetopmarginsm">
+        <button type="submit" class="btn btn-primary btn-lg" disabled id="okbtn" form="postform">Vis</button>
     </div>
 </div>
 

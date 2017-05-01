@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using KliPr.ViewModels;
 using MongoDB.Bson;
+using KliPr.Models;
 
-namespace KliPr.Models
+namespace KliPr.Helpers
 {
     public class ViewModelMapper
     {
