@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - KliPr</title>
-
+    <link runat="server" rel="shortcut icon" href="~/images/favicon-32x32.png" type="image/x-icon" />
+    <link runat="server" rel="icon" href="~/images/favicon-32x32.png" type="image/ico" />
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -30,6 +31,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a asp-area="" asp-controller="Forsker" asp-action="Dashboard" class="navbar-brand">KliPr</a>
+                <a asp-area="" asp-controller="Patient" asp-action="Participant" class="navbar-brand"><span class="glyphicon glyphicon-list-alt"></span></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">

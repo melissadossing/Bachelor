@@ -5,7 +5,9 @@
     int q_amt = 20;
     int patient = (int)KliPr.Enum.Participant.Patient;
     int pårørende = (int)KliPr.Enum.Participant.Pårørende;
-    var DA = new KliPr.Models.DataAccess();
+    int sundhedspro = (int)KliPr.Enum.Participant.Sundhedsprofessionel;
+    int admin = (int)KliPr.Enum.Participant.Administrator;
+    var DA = new KliPr.DAL.DataAccess();
     var list = DA.GetNameList();
 
     foreach(var name in list)
@@ -23,18 +25,20 @@
     <form method="post" id="questioncontainer">
             <div class="form-group">
                 <div class="col-xs-4 nopadding">
-                    <label for="name">Navn på spørgeskema:</label>
+                    <div for="name">Navn på spørgeskema:</div>
                     <input class="form-control namebox" name="name" placeholder="Navn" id="questionnairename">
                 </div>
                 <div class="col-xs-8 nopadding">
-                    <label for="henvender">Hvem henvender spørgeskemaet sig til?</label>
+                    <div for="henvender">Hvem henvender spørgeskemaet sig til?</div>
                     <select class="form-control" name="participant" id="henvender">                       
                         <option id="" value="@patient">@KliPr.Enum.Participant.Patient</option>
-                        <option id="" value="@pårørende">@KliPr.Enum.Participant.Pårørende</option>                        
+                        <option id="" value="@pårørende">@KliPr.Enum.Participant.Pårørende</option>
+                        <option id="" value="@sundhedspro">@KliPr.Enum.Participant.Sundhedsprofessionel</option> 
+                        <option id="" value="@admin">@KliPr.Enum.Participant.Administrator</option>                          
                     </select>
                 </div>
                 <br />
-                <label>Vælg spørgsmål:</label>
+                <div class="smalltopmargin">Vælg spørgsmål:</div>
                 <div class="floatleft">
                     <select class="form-control" id="sel">
                         <option id="opt0" value="0">Spørgsmål 1</option>
@@ -63,18 +67,17 @@
                         <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                     </button>*@
                 </div>
-                <br />
             </div>
         <div class="row col-xs-12">
             <div class="rc0 col-xs-12" id="q0">
                 <br />
                 <div class="row">
                     <div class="col-xs-9">
-                        <label for="q0nameid">Indtast spørgsmål:</label>
+                        <div class="labelonbg" for="q0nameid">Indtast spørgsmål:</div>
                         <input class="form-control" name="q0name" id="q0nameid" placeholder="Spørgsmål 1">
                     </div>
                     <div class="col-xs-3">
-                        <label for="seltype0">Vælg svartype</label>
+                        <div class="labelonbg" for="seltype0">Vælg svartype</div>
                         <select class="form-control" id="seltype0" placeholder="Svartype" name="q0type">
                             <option value="0">Kun ét svar kan vælges</option>
                             <option value="2">Rent tekstsvar</option>
@@ -84,7 +87,7 @@
                 <br />
                 <div class="row" id="q0t0">
                     <div class="col-xs-6">
-                        <label>Indtast svarmuligheder: (alle fem behøves ikke benyttes)</label>
+                        <div class="labelonbg">Indtast svarmuligheder: (alle fem behøves ikke benyttes)</div>
                         <input class="form-control" name="q0t0a0" id="q0t0a0" placeholder="Svar 1">
                         <input class="form-control svarm" name="q0t0a1" id="q0t0a1" placeholder="Svar 2">
                         <input class="form-control svarm" name="q0t0a2" id="q0t0a2" placeholder="Svar 3">
@@ -95,16 +98,16 @@
                 </div>
                 <div class="row nondisplay" id="q0t5">
                     <div class="col-xs-6">
-                        <label>Indtast startværdi:</label>
+                        <div class="labelonbg">Indtast startværdi:</div>
                         <input class="form-control t2" name="q0t1a0" id="q0t1a0" type="number">
                         <br />
-                        <label>Indtast slutværdi:</label>
+                        <div class="labelonbg">Indtast slutværdi:</div>
                         <input class="form-control t2" name="q0t1a1" id="q0t1a1" type="number">
                     </div>
                 </div>
                 <br />
                 @*<div class="col-xs3">
-                    <label for="needanswer0">Skal besvares:</label>
+                    <div class="labelonbg" for="needanswer0">Skal besvares:</div>
                     <input type="checkbox" value="true" name="needanswer0" id="needanswer0">
                 </div>
                 <br />*@
@@ -113,11 +116,11 @@
                 <br />
                 <div class="row">
                     <div class="col-xs-9">
-                        <label for="q1nameid">Indtast spørgsmål:</label>
+                        <div class="labelonbg" for="q1nameid">Indtast spørgsmål:</div>
                         <input class="form-control" name="q1name" id="q1nameid" placeholder="Spørgsmål 2">
                     </div>
                     <div class="col-xs-3">
-                        <label for="seltype1">Vælg svartype</label>
+                        <div class="labelonbg" for="seltype1">Vælg svartype</div>
                         <select class="form-control" id="seltype1" placeholder="Svartype" name="q1type">
                             <option value="0">Kun ét svar kan vælges</option>
                             <option value="2">Rent tekstsvar</option>
@@ -127,7 +130,7 @@
                 <br />
                 <div class="row" id="q1t0">
                     <div class="col-xs-6">
-                        <label>Indtast svarmuligheder: (alle fem behøves ikke benyttes)</label>
+                        <div class="labelonbg">Indtast svarmuligheder: (alle fem behøves ikke benyttes)</div>
                         <input class="form-control" name="q1t0a0" id="q1t0a0" placeholder="Svar 1">
                         <input class="form-control svarm" name="q1t0a1" id="q1t0a1" placeholder="Svar 2">
                         <input class="form-control svarm" name="q1t0a2" id="q1t0a2" placeholder="Svar 3">
@@ -138,16 +141,16 @@
                 </div>
                 <div class="row nondisplay" id="q1t5">
                     <div class="col-xs-6">
-                        <label>Indtast startværdi:</label>
+                        <div class="labelonbg">Indtast startværdi:</div>
                         <input class="form-control t2" name="q1t1a0" id="q1t1a0" type="number">
                         <br />
-                        <label>Indtast slutværdi:</label>
+                        <div class="labelonbg">Indtast slutværdi:</div>
                         <input class="form-control t2" name="q1t1a1" id="q1t1a1" type="number">
                     </div>
                 </div>
                 <br />
                 @*<div class="col-xs3">
-                    <label for="needanswer1">Skal besvares:</label>
+                    <div class="labelonbg" for="needanswer1">Skal besvares:</div>
                     <input type="checkbox" value="true" name="needanswer1"id="needanswer1">
                 </div>
                 <br />*@
@@ -156,11 +159,11 @@
                 <br />
                 <div class="row">
                     <div class="col-xs-9">
-                        <label for="q2nameid">Indtast spørgsmål:</label>
+                        <div class="labelonbg" for="q2nameid">Indtast spørgsmål:</div>
                         <input class="form-control" name="q2name" id="q2nameid" placeholder="Spørgsmål 3">
                     </div>
                     <div class="col-xs-3">
-                        <label for="seltype2">Vælg svartype</label>
+                        <div class="labelonbg" for="seltype2">Vælg svartype</div>
                         <select class="form-control" id="seltype2" placeholder="Svartype" name="q2type">
                             <option value="0">Kun ét svar kan vælges</option>
                             <option value="2">Rent tekstsvar</option>
@@ -170,7 +173,7 @@
                 <br />
                 <div class="row" id="q2t0">
                     <div class="col-xs-6">
-                        <label>Indtast svarmuligheder: (alle fem behøves ikke benyttes)</label>
+                        <div class="labelonbg">Indtast svarmuligheder: (alle fem behøves ikke benyttes)</div>
                         <input class="form-control" name="q2t0a0" id="q2t0a0" placeholder="Svar 1">
                         <input class="form-control svarm" name="q2t0a1" id="q2t0a1" placeholder="Svar 2">
                         <input class="form-control svarm" name="q2t0a2" id="q2t0a2" placeholder="Svar 3">
@@ -181,16 +184,16 @@
                 </div>
                 <div class="row nondisplay" id="q2t5">
                     <div class="col-xs-6">
-                        <label>Indtast startværdi:</label>
+                        <div class="labelonbg">Indtast startværdi:</div>
                         <input class="form-control t2" name="q2t1a0" id="q2t1a0" type="number">
                         <br />
-                        <label>Indtast slutværdi:</label>
+                        <div class="labelonbg">Indtast slutværdi:</div>
                         <input class="form-control t2" name="q2t1a1" id="q2t1a1" type="number">
                     </div>
                 </div>
                 <br />
                 @*<div class="col-xs3">
-                    <label for="needanswer2">Skal besvares:</label>
+                    <div class="labelonbg" for="needanswer2">Skal besvares:</div>
                     <input type="checkbox" value="true" name="needanswer2" id="needanswer2">
                 </div>
                 <br />*@
@@ -199,11 +202,11 @@
                 <br />
                 <div class="row">
                     <div class="col-xs-9">
-                        <label for="q3nameid">Indtast spørgsmål:</label>
+                        <div class="labelonbg" for="q3nameid">Indtast spørgsmål:</div>
                         <input class="form-control" name="q3name" id="q3nameid" placeholder="Spørgsmål 4">
                     </div>
                     <div class="col-xs-3">
-                        <label for="seltype3">Vælg svartype</label>
+                        <div class="labelonbg" for="seltype3">Vælg svartype</div>
                         <select class="form-control" id="seltype3" placeholder="Svartype" name="q3type">
                             <option value="0">Kun ét svar kan vælges</option>
                             <option value="2">Rent tekstsvar</option>
@@ -213,7 +216,7 @@
                 <br />
                 <div class="row" id="q3t0">
                     <div class="col-xs-6">
-                        <label>Indtast svarmuligheder: (alle fem behøves ikke benyttes)</label>
+                        <div class="labelonbg">Indtast svarmuligheder: (alle fem behøves ikke benyttes)</div>
                         <input class="form-control" name="q3t0a0" id="q3t0a0" placeholder="Svar 1">
                         <input class="form-control svarm" name="q3t0a1" id="q3t0a1" placeholder="Svar 2">
                         <input class="form-control svarm" name="q3t0a2" id="q3t0a2" placeholder="Svar 3">
@@ -224,16 +227,16 @@
                 </div>
                 <div class="row nondisplay" id="q3t5">
                     <div class="col-xs-6">
-                        <label>Indtast startværdi:</label>
+                        <div class="labelonbg">Indtast startværdi:</div>
                         <input class="form-control t2" name="q3t1a0" id="q3t1a0"  type="number">
                         <br />
-                        <label>Indtast slutværdi:</label>
+                        <div class="labelonbg">Indtast slutværdi:</div>
                         <input class="form-control t2" name="q3t1a1" id="q3t1a1"  type="number">
                     </div>
                 </div>
                 <br />
                 @*<div class="col-xs3">
-                    <label for="needanswer3">Skal besvares:</label>
+                    <div class="labelonbg" for="needanswer3">Skal besvares:</div>
                     <input type="checkbox" value="true" name="needanswer3" id="needanswer3">
                 </div>
                 <br />*@
@@ -242,11 +245,11 @@
                 <br />
                 <div class="row">
                     <div class="col-xs-9">
-                        <label for="q4nameid">Indtast spørgsmål:</label>
+                        <div class="labelonbg" for="q4nameid">Indtast spørgsmål:</div>
                         <input class="form-control" name="q4name" id="q4nameid" placeholder="Spørgsmål 5">
                     </div>
                     <div class="col-xs-3">
-                        <label for="seltype4">Vælg svartype</label>
+                        <div class="labelonbg" for="seltype4">Vælg svartype</div>
                         <select class="form-control" id="seltype4" placeholder="Svartype" name="q4type">
                             <option value="0">Kun ét svar kan vælges</option>
                             <option value="2">Rent tekstsvar</option>
@@ -256,7 +259,7 @@
                 <br />
                 <div class="row" id="q4t0">
                     <div class="col-xs-6">
-                        <label>Indtast svarmuligheder: (alle fem behøves ikke benyttes)</label>
+                        <div class="labelonbg">Indtast svarmuligheder: (alle fem behøves ikke benyttes)</div>
                         <input class="form-control" name="q4t0a0" id="q4t0a0" placeholder="Svar 1">
                         <input class="form-control svarm" name="q4t0a1" id="q4t0a1" placeholder="Svar 2">
                         <input class="form-control svarm" name="q4t0a2" id="q4t0a2" placeholder="Svar 3">
@@ -267,16 +270,16 @@
                 </div>
                 <div class="row nondisplay" id="q4t5">
                     <div class="col-xs-6">
-                        <label>Indtast startværdi:</label>
+                        <div class="labelonbg">Indtast startværdi:</div>
                         <input class="form-control t2" name="q4t1a0" id="q4t1a0"  type="number">
                         <br />
-                        <label>Indtast slutværdi:</label>
+                        <div class="labelonbg">Indtast slutværdi:</div>
                         <input class="form-control t2" name="q4t1a1" id="q4t1a1"  type="number">
                     </div>
                 </div>
                 <br />
                 @*<div class="col-xs3">
-                    <label for="needanswer4">Skal besvares:</label>
+                    <div class="labelonbg" for="needanswer4">Skal besvares:</div>
                     <input type="checkbox" value="true" name="needanswer4" id="needanswer4">
                 </div>
                 <br />*@
@@ -285,11 +288,11 @@
                 <br />
                 <div class="row">
                     <div class="col-xs-9">
-                        <label for="q5nameid">Indtast spørgsmål:</label>
+                        <div class="labelonbg" for="q5nameid">Indtast spørgsmål:</div>
                         <input class="form-control" name="q5name" id="q5nameid" placeholder="Spørgsmål 6">
                     </div>
                     <div class="col-xs-3">
-                        <label for="seltype5">Vælg svartype</label>
+                        <div class="labelonbg" for="seltype5">Vælg svartype</div>
                         <select class="form-control" id="seltype5" placeholder="Svartype" name="q5type">
                             <option value="0">Kun ét svar kan vælges</option>
                             <option value="2">Rent tekstsvar</option>
@@ -299,7 +302,7 @@
                 <br />
                 <div class="row" id="q5t0">
                     <div class="col-xs-6">
-                        <label>Indtast svarmuligheder: (alle fem behøves ikke benyttes)</label>
+                        <div class="labelonbg">Indtast svarmuligheder: (alle fem behøves ikke benyttes)</div>
                         <input class="form-control" name="q5t0a0" id="q5t0a0" placeholder="Svar 1">
                         <input class="form-control svarm" name="q5t0a1" id="q5t0a1" placeholder="Svar 2">
                         <input class="form-control svarm" name="q5t0a2" id="q5t0a2" placeholder="Svar 3">
@@ -310,16 +313,16 @@
                 </div>
                 <div class="row nondisplay" id="q5t5">
                     <div class="col-xs-6">
-                        <label>Indtast startværdi:</label>
+                        <div class="labelonbg">Indtast startværdi:</div>
                         <input class="form-control t2" name="q5t1a0" id="q5t1a0"  type="number">
                         <br />
-                        <label>Indtast slutværdi:</label>
+                        <div class="labelonbg">Indtast slutværdi:</div>
                         <input class="form-control t2" name="q5t1a1" id="q5t1a1"  type="number">
                     </div>
                 </div>
                 <br />
                 @*<div class="col-xs3">
-                    <label for="needanswer5">Skal besvares:</label>
+                    <div class="labelonbg" for="needanswer5">Skal besvares:</div>
                     <input type="checkbox" value="true" name="needanswer5" id="needanswer5">
                 </div>
                 <br />*@
@@ -328,11 +331,11 @@
                 <br />
                 <div class="row">
                     <div class="col-xs-9">
-                        <label for="q6nameid">Indtast spørgsmål:</label>
+                        <div class="labelonbg" for="q6nameid">Indtast spørgsmål:</div>
                         <input class="form-control" name="q6name" id="q6nameid" placeholder="Spørgsmål 7">
                     </div>
                     <div class="col-xs-3">
-                        <label for="seltype6">Vælg svartype</label>
+                        <div class="labelonbg" for="seltype6">Vælg svartype</div>
                         <select class="form-control" id="seltype6" placeholder="Svartype" name="q6type">
                             <option value="0">Kun ét svar kan vælges</option>
                             <option value="2">Rent tekstsvar</option>
@@ -342,7 +345,7 @@
                 <br />
                 <div class="row" id="q6t0">
                     <div class="col-xs-6">
-                        <label>Indtast svarmuligheder: (alle fem behøves ikke benyttes)</label>
+                        <div class="labelonbg">Indtast svarmuligheder: (alle fem behøves ikke benyttes)</div>
                         <input class="form-control" name="q6t0a0" id="q6t0a0" placeholder="Svar 1">
                         <input class="form-control svarm" name="q6t0a1" id="q6t0a1" placeholder="Svar 2">
                         <input class="form-control svarm" name="q6t0a2" id="q6t0a2" placeholder="Svar 3">
@@ -353,16 +356,16 @@
                 </div>
                 <div class="row nondisplay" id="q6t5">
                     <div class="col-xs-6">
-                        <label>Indtast startværdi:</label>
+                        <div class="labelonbg">Indtast startværdi:</div>
                         <input class="form-control t2" name="q6t1a0" id="q6t1a0"  type="number">
                         <br />
-                        <label>Indtast slutværdi:</label>
+                        <div class="labelonbg">Indtast slutværdi:</div>
                         <input class="form-control t2" name="q6t1a1" id="q6t1a1"  type="number">
                     </div>
                 </div>
                 <br />
                 @*<div class="col-xs3">
-                    <label for="needanswer6">Skal besvares:</label>
+                    <div class="labelonbg" for="needanswer6">Skal besvares:</div>
                     <input type="checkbox" value="true" name="needanswer6" id="needanswer6">
                 </div>
                 <br />*@
@@ -371,11 +374,11 @@
                 <br />
                 <div class="row">
                     <div class="col-xs-9">
-                        <label for="q7nameid">Indtast spørgsmål:</label>
+                        <div class="labelonbg" for="q7nameid">Indtast spørgsmål:</div>
                         <input class="form-control" name="q7name" id="q7nameid" placeholder="Spørgsmål 8">
                     </div>
                     <div class="col-xs-3">
-                        <label for="seltype7">Vælg svartype</label>
+                        <div class="labelonbg" for="seltype7">Vælg svartype</div>
                         <select class="form-control" id="seltype7" placeholder="Svartype" name="q7type">
                             <option value="0">Kun ét svar kan vælges</option>
                             <option value="2">Rent tekstsvar</option>
@@ -385,7 +388,7 @@
                 <br />
                 <div class="row" id="q7t0">
                     <div class="col-xs-6">
-                        <label>Indtast svarmuligheder: (alle fem behøves ikke benyttes)</label>
+                        <div class="labelonbg">Indtast svarmuligheder: (alle fem behøves ikke benyttes)</div>
                         <input class="form-control" name="q7t0a0" id="q7t0a0" placeholder="Svar 1">
                         <input class="form-control svarm" name="q7t0a1" id="q7t0a1" placeholder="Svar 2">
                         <input class="form-control svarm" name="q7t0a2" id="q7t0a2" placeholder="Svar 3">
@@ -396,16 +399,16 @@
                 </div>
                 <div class="row nondisplay" id="q7t5">
                     <div class="col-xs-6">
-                        <label>Indtast startværdi:</label>
+                        <div class="labelonbg">Indtast startværdi:</div>
                         <input class="form-control t2" name="q7t1a0" id="q7t1a0"  type="number">
                         <br />
-                        <label>Indtast slutværdi:</label>
+                        <div class="labelonbg">Indtast slutværdi:</div>
                         <input class="form-control t2" name="q7t1a1" id="q7t1a1"  type="number">
                     </div>
                 </div>
                 <br />
                 @*<div class="col-xs3">
-                    <label for="needanswer7">Skal besvares:</label>
+                    <div class="labelonbg" for="needanswer7">Skal besvares:</div>
                     <input type="checkbox" value="true" name="needanswer7" id="needanswer7">
                 </div>
                 <br />*@
@@ -414,11 +417,11 @@
                 <br />
                 <div class="row">
                     <div class="col-xs-9">
-                        <label for="q8nameid">Indtast spørgsmål:</label>
+                        <div class="labelonbg" for="q8nameid">Indtast spørgsmål:</div>
                         <input class="form-control" name="q8name" id="q8nameid" placeholder="Spørgsmål 9">
                     </div>
                     <div class="col-xs-3">
-                        <label for="seltype8">Vælg svartype</label>
+                        <div class="labelonbg" for="seltype8">Vælg svartype</div>
                         <select class="form-control" id="seltype8" placeholder="Svartype" name="q8type">
                             <option value="0">Kun ét svar kan vælges</option>
                             <option value="2">Rent tekstsvar</option>
@@ -428,7 +431,7 @@
                 <br />
                 <div class="row" id="q8t0">
                     <div class="col-xs-6">
-                        <label>Indtast svarmuligheder: (alle fem behøves ikke benyttes)</label>
+                        <div class="labelonbg">Indtast svarmuligheder: (alle fem behøves ikke benyttes)</div>
                         <input class="form-control" name="q8t0a0" id="q8t0a0" placeholder="Svar 1">
                         <input class="form-control svarm" name="q8t0a1" id="q8t0a1" placeholder="Svar 2">
                         <input class="form-control svarm" name="q8t0a2" id="q8t0a2" placeholder="Svar 3">
@@ -439,16 +442,16 @@
                 </div>
                 <div class="row nondisplay" id="q8t5">
                     <div class="col-xs-6">
-                        <label>Indtast startværdi:</label>
+                        <div class="labelonbg">Indtast startværdi:</div>
                         <input class="form-control t2" name="q8t1a0" id="q8t1a0"  type="number">
                         <br />
-                        <label>Indtast slutværdi:</label>
+                        <div class="labelonbg">Indtast slutværdi:</div>
                         <input class="form-control t2" name="q8t1a1" id="q8t1a1"  type="number">
                     </div>
                 </div>
                 <br />
                 @*<div class="col-xs3">
-                    <label for="needanswer8">Skal besvares:</label>
+                    <div class="labelonbg" for="needanswer8">Skal besvares:</div>
                     <input type="checkbox" value="true" name="needanswer8" id="needanswer8">
                 </div>
                 <br />*@
@@ -457,11 +460,11 @@
                 <br />
                 <div class="row">
                     <div class="col-xs-9">
-                        <label for="q9nameid">Indtast spørgsmål:</label>
+                        <div class="labelonbg" for="q9nameid">Indtast spørgsmål:</div>
                         <input class="form-control" name="q9name" id="q9nameid" placeholder="Spørgsmål 10">
                     </div>
                     <div class="col-xs-3">
-                        <label for="seltype9">Vælg svartype</label>
+                        <div class="labelonbg" for="seltype9">Vælg svartype</div>
                         <select class="form-control" id="seltype9" placeholder="Svartype" name="q9type">
                             <option value="0">Kun ét svar kan vælges</option>
                             <option value="2">Rent tekstsvar</option>
@@ -471,7 +474,7 @@
                 <br />
                 <div class="row" id="q9t0">
                     <div class="col-xs-6">
-                        <label>Indtast svarmuligheder: (alle fem behøves ikke benyttes)</label>
+                        <div class="labelonbg">Indtast svarmuligheder: (alle fem behøves ikke benyttes)</div>
                         <input class="form-control" name="q9t0a0" id="q9t0a0" placeholder="Svar 1">
                         <input class="form-control svarm" name="q9t0a1" id="q9t0a1" placeholder="Svar 2">
                         <input class="form-control svarm" name="q9t0a2" id="q9t0a2" placeholder="Svar 3">
@@ -482,16 +485,16 @@
                 </div>
                 <div class="row nondisplay" id="q9t5">
                     <div class="col-xs-6">
-                        <label>Indtast startværdi:</label>
+                        <div class="labelonbg">Indtast startværdi:</div>
                         <input class="form-control t2" name="q9t1a0" id="q9t1a0"  type="number">
                         <br />
-                        <label>Indtast slutværdi:</label>
+                        <div class="labelonbg">Indtast slutværdi:</div>
                         <input class="form-control t2" name="q9t1a1" id="q9t1a1"  type="number">
                     </div>
                 </div>
                 <br />
                 @*<div class="col-xs3">
-                    <label for="needanswer9">Skal besvares:</label>
+                    <div class="labelonbg" for="needanswer9">Skal besvares:</div>
                     <input type="checkbox" value="true" name="needanswer9" id="needanswer9">
                 </div>
                 <br />*@
@@ -500,11 +503,11 @@
                 <br />
                 <div class="row">
                     <div class="col-xs-9">
-                        <label for="q10nameid">Indtast spørgsmål:</label>
+                        <div class="labelonbg" for="q10nameid">Indtast spørgsmål:</div>
                         <input class="form-control" name="q10name" id="q10nameid" placeholder="Spørgsmål 11">
                     </div>
                     <div class="col-xs-3">
-                        <label for="seltype10">Vælg svartype</label>
+                        <div class="labelonbg" for="seltype10">Vælg svartype</div>
                         <select class="form-control" id="seltype10" placeholder="Svartype" name="q10type">
                             <option value="0">Kun ét svar kan vælges</option>
                             <option value="2">Rent tekstsvar</option>
@@ -514,7 +517,7 @@
                 <br />
                 <div class="row" id="q10t0">
                     <div class="col-xs-6">
-                        <label>Indtast svarmuligheder: (alle fem behøves ikke benyttes)</label>
+                        <div class="labelonbg">Indtast svarmuligheder: (alle fem behøves ikke benyttes)</div>
                         <input class="form-control" name="q10t0a0" id="q10t0a0" placeholder="Svar 1">
                         <input class="form-control svarm" name="q10t0a1" id="q10t0a1" placeholder="Svar 2">
                         <input class="form-control svarm" name="q10t0a2" id="q10t0a2" placeholder="Svar 3">
@@ -525,16 +528,16 @@
                 </div>
                 <div class="row nondisplay" id="q10t5">
                     <div class="col-xs-6">
-                        <label>Indtast startværdi:</label>
+                        <div class="labelonbg">Indtast startværdi:</div>
                         <input class="form-control t2" name="q10t1a0" id="q10t1a0"  type="number">
                         <br />
-                        <label>Indtast slutværdi:</label>
+                        <div class="labelonbg">Indtast slutværdi:</div>
                         <input class="form-control t2" name="q10t1a1" id="q10t1a1"  type="number">
                     </div>
                 </div>
                 <br />
                 @*<div class="col-xs3">
-                    <label for="needanswer10">Skal besvares:</label>
+                    <div class="labelonbg" for="needanswer10">Skal besvares:</div>
                     <input type="checkbox" value="true" name="needanswer10" id="needanswer10">
                 </div>
                 <br />*@
@@ -543,11 +546,11 @@
                 <br />
                 <div class="row">
                     <div class="col-xs-9">
-                        <label for="q11nameid">Indtast spørgsmål:</label>
+                        <div class="labelonbg" for="q11nameid">Indtast spørgsmål:</div>
                         <input class="form-control" name="q11name" id="q11nameid" placeholder="Spørgsmål 12">
                     </div>
                     <div class="col-xs-3">
-                        <label for="seltype11">Vælg svartype</label>
+                        <div class="labelonbg" for="seltype11">Vælg svartype</div>
                         <select class="form-control" id="seltype11" placeholder="Svartype" name="q11type">
                             <option value="0">Kun ét svar kan vælges</option>
                             <option value="2">Rent tekstsvar</option>
@@ -557,7 +560,7 @@
                 <br />
                 <div class="row" id="q11t0">
                     <div class="col-xs-6">
-                        <label>Indtast svarmuligheder: (alle fem behøves ikke benyttes)</label>
+                        <div class="labelonbg">Indtast svarmuligheder: (alle fem behøves ikke benyttes)</div>
                         <input class="form-control" name="q11t0a0" id="q11t0a0" placeholder="Svar 1">
                         <input class="form-control svarm" name="q11t0a1" id="q11t0a1" placeholder="Svar 2">
                         <input class="form-control svarm" name="q11t0a2" id="q11t0a2" placeholder="Svar 3">
@@ -568,16 +571,16 @@
                 </div>
                 <div class="row nondisplay" id="q11t5">
                     <div class="col-xs-6">
-                        <label>Indtast startværdi:</label>
+                        <div class="labelonbg">Indtast startværdi:</div>
                         <input class="form-control t2" name="q11t1a0" id="q11t1a0"  type="number">
                         <br />
-                        <label>Indtast slutværdi:</label>
+                        <div class="labelonbg">Indtast slutværdi:</div>
                         <input class="form-control t2" name="q11t1a1" id="q11t1a1"  type="number">
                     </div>
                 </div>
                 <br />
                 @*<div class="col-xs3">
-                    <label for="needanswer11">Skal besvares:</label>
+                    <div class="labelonbg" for="needanswer11">Skal besvares:</div>
                     <input type="checkbox" value="true" name="needanswer11" id="needanswer11">
                 </div>
                 <br />*@
@@ -586,11 +589,11 @@
                 <br />
                 <div class="row">
                     <div class="col-xs-9">
-                        <label for="q12nameid">Indtast spørgsmål:</label>
+                        <div class="labelonbg" for="q12nameid">Indtast spørgsmål:</div>
                         <input class="form-control" name="q12name" id="q12nameid" placeholder="Spørgsmål 13">
                     </div>
                     <div class="col-xs-3">
-                        <label for="seltype12">Vælg svartype</label>
+                        <div class="labelonbg" for="seltype12">Vælg svartype</div>
                         <select class="form-control" id="seltype12" placeholder="Svartype" name="q12type">
                             <option value="0">Kun ét svar kan vælges</option>
                             <option value="2">Rent tekstsvar</option>
@@ -600,7 +603,7 @@
                 <br />
                 <div class="row" id="q12t0">
                     <div class="col-xs-6">
-                        <label>Indtast svarmuligheder: (alle fem behøves ikke benyttes)</label>
+                        <div class="labelonbg">Indtast svarmuligheder: (alle fem behøves ikke benyttes)</div>
                         <input class="form-control" name="q12t0a0" id="q12t0a0" placeholder="Svar 1">
                         <input class="form-control svarm" name="q12t0a1" id="q12t0a1" placeholder="Svar 2">
                         <input class="form-control svarm" name="q12t0a2" id="q12t0a2" placeholder="Svar 3">
@@ -611,16 +614,16 @@
                 </div>
                 <div class="row nondisplay" id="q12t5">
                     <div class="col-xs-6">
-                        <label>Indtast startværdi:</label>
+                        <div class="labelonbg">Indtast startværdi:</div>
                         <input class="form-control t2" name="q12t1a0" id="q12t1a0"  type="number">
                         <br />
-                        <label>Indtast slutværdi:</label>
+                        <div class="labelonbg">Indtast slutværdi:</div>
                         <input class="form-control t2" name="q12t1a1" id="q12t1a1"  type="number">
                     </div>
                 </div>
                 <br />
                 @*<div class="col-xs3">
-                    <label for="needanswer12">Skal besvares:</label>
+                    <div class="labelonbg" for="needanswer12">Skal besvares:</div>
                     <input type="checkbox" value="true" name="needanswer12" id="needanswer12">
                 </div>
                 <br />*@
@@ -629,11 +632,11 @@
                 <br />
                 <div class="row">
                     <div class="col-xs-9">
-                        <label for="q13nameid">Indtast spørgsmål:</label>
+                        <div class="labelonbg" for="q13nameid">Indtast spørgsmål:</div>
                         <input class="form-control" name="q13name" id="q13nameid" placeholder="Spørgsmål 14">
                     </div>
                     <div class="col-xs-3">
-                        <label for="seltype13">Vælg svartype</label>
+                        <div class="labelonbg" for="seltype13">Vælg svartype</div>
                         <select class="form-control" id="seltype13" placeholder="Svartype" name="q13type">
                             <option value="0">Kun ét svar kan vælges</option>
                             <option value="2">Rent tekstsvar</option>
@@ -643,7 +646,7 @@
                 <br />
                 <div class="row" id="q13t0">
                     <div class="col-xs-6">
-                        <label>Indtast svarmuligheder: (alle fem behøves ikke benyttes)</label>
+                        <div class="labelonbg">Indtast svarmuligheder: (alle fem behøves ikke benyttes)</div>
                         <input class="form-control" name="q13t0a0" id="q13t0a0" placeholder="Svar 1">
                         <input class="form-control svarm" name="q13t0a1" id="q13t0a1" placeholder="Svar 2">
                         <input class="form-control svarm" name="q13t0a2" id="q13t0a2" placeholder="Svar 3">
@@ -654,16 +657,16 @@
                 </div>
                 <div class="row nondisplay" id="q13t5">
                     <div class="col-xs-6">
-                        <label>Indtast startværdi:</label>
+                        <div class="labelonbg">Indtast startværdi:</div>
                         <input class="form-control t2" name="q13t1a0" id="q13t1a0"  type="number">
                         <br />
-                        <label>Indtast slutværdi:</label>
+                        <div class="labelonbg">Indtast slutværdi:</div>
                         <input class="form-control t2" name="q13t1a1" id="q13t1a1"  type="number">
                     </div>
                 </div>
                 <br />
                 @*<div class="col-xs3">
-                    <label for="needanswer13">Skal besvares:</label>
+                    <div class="labelonbg" for="needanswer13">Skal besvares:</div>
                     <input type="checkbox" value="true" name="needanswer13" id="needanswer13">
                 </div>
                 <br />*@
@@ -672,11 +675,11 @@
                 <br />
                 <div class="row">
                     <div class="col-xs-9">
-                        <label for="q14nameid">Indtast spørgsmål:</label>
+                        <div class="labelonbg" for="q14nameid">Indtast spørgsmål:</div>
                         <input class="form-control" name="q14name" id="q14nameid" placeholder="Spørgsmål 15">
                     </div>
                     <div class="col-xs-3">
-                        <label for="seltype14">Vælg svartype</label>
+                        <div class="labelonbg" for="seltype14">Vælg svartype</div>
                         <select class="form-control" id="seltype14" placeholder="Svartype" name="q14type">
                             <option value="0">Kun ét svar kan vælges</option>
                             <option value="2">Rent tekstsvar</option>
@@ -686,7 +689,7 @@
                 <br />
                 <div class="row" id="q14t0">
                     <div class="col-xs-6">
-                        <label>Indtast svarmuligheder: (alle fem behøves ikke benyttes)</label>
+                        <div class="labelonbg">Indtast svarmuligheder: (alle fem behøves ikke benyttes)</div>
                         <input class="form-control" name="q14t0a0" id="q14t0a0" placeholder="Svar 1">
                         <input class="form-control svarm" name="q14t0a1" id="q14t0a1" placeholder="Svar 2">
                         <input class="form-control svarm" name="q14t0a2" id="q14t0a2" placeholder="Svar 3">
@@ -697,16 +700,16 @@
                 </div>
                 <div class="row nondisplay" id="q14t5">
                     <div class="col-xs-6">
-                        <label>Indtast startværdi:</label>
+                        <div class="labelonbg">Indtast startværdi:</div>
                         <input class="form-control t2" name="q14t1a0" id="q14t1a0" type="number">
                         <br />
-                        <label>Indtast slutværdi:</label>
+                        <div class="labelonbg">Indtast slutværdi:</div>
                         <input class="form-control t2" name="q14t1a1" id="q14t1a1" type="number">
                     </div>
                 </div>
                 <br />
                 @*<div class="col-xs3">
-                    <label for="needanswer15">Skal besvares:</label>
+                    <div class="labelonbg" for="needanswer15">Skal besvares:</div>
                     <input type="checkbox" value="true" name="needanswer14" id="needanswer14">
                 </div>
                 <br />*@
@@ -715,11 +718,11 @@
                 <br />
                 <div class="row">
                     <div class="col-xs-9">
-                        <label for="q15nameid">Indtast spørgsmål:</label>
+                        <div class="labelonbg" for="q15nameid">Indtast spørgsmål:</div>
                         <input class="form-control" name="q15name" id="q15nameid" placeholder="Spørgsmål 16">
                     </div>
                     <div class="col-xs-3">
-                        <label for="seltype15">Vælg svartype</label>
+                        <div class="labelonbg" for="seltype15">Vælg svartype</div>
                         <select class="form-control" id="seltype15" placeholder="Svartype" name="q15type">
                             <option value="0">Kun ét svar kan vælges</option>
                             <option value="2">Rent tekstsvar</option>
@@ -729,7 +732,7 @@
                 <br />
                 <div class="row" id="q15t0">
                     <div class="col-xs-6">
-                        <label>Indtast svarmuligheder: (alle fem behøves ikke benyttes)</label>
+                        <div class="labelonbg">Indtast svarmuligheder: (alle fem behøves ikke benyttes)</div>
                         <input class="form-control" name="q15t0a0" id="q15t0a0" placeholder="Svar 1">
                         <input class="form-control svarm" name="q15t0a1" id="q15t0a1" placeholder="Svar 2">
                         <input class="form-control svarm" name="q15t0a2" id="q15t0a2" placeholder="Svar 3">
@@ -740,16 +743,16 @@
                 </div>
                 <div class="row nondisplay" id="q15t5">
                     <div class="col-xs-6">
-                        <label>Indtast startværdi:</label>
+                        <div class="labelonbg">Indtast startværdi:</div>
                         <input class="form-control t2" name="q15t1a0" id="q15t1a0" type="number">
                         <br />
-                        <label>Indtast slutværdi:</label>
+                        <div class="labelonbg">Indtast slutværdi:</div>
                         <input class="form-control t2" name="q15t1a1" id="q15t1a1" type="number">
                     </div>
                 </div>
                 <br />
                 @*<div class="col-xs3">
-                    <label for="needanswer15">Skal besvares:</label>
+                    <div class="labelonbg" for="needanswer15">Skal besvares:</div>
                     <input type="checkbox" value="true" name="needanswer15" id="needanswer15">
                 </div>
                 <br />*@
@@ -758,11 +761,11 @@
                 <br />
                 <div class="row">
                     <div class="col-xs-9">
-                        <label for="q16nameid">Indtast spørgsmål:</label>
+                        <div class="labelonbg" for="q16nameid">Indtast spørgsmål:</div>
                         <input class="form-control" name="q16name" id="q16nameid" placeholder="Spørgsmål 17">
                     </div>
                     <div class="col-xs-3">
-                        <label for="seltype16">Vælg svartype</label>
+                        <div class="labelonbg" for="seltype16">Vælg svartype</div>
                         <select class="form-control" id="seltype16" placeholder="Svartype" name="q16type">
                             <option value="0">Kun ét svar kan vælges</option>
                             <option value="2">Rent tekstsvar</option>
@@ -772,7 +775,7 @@
                 <br />
                 <div class="row" id="q16t0">
                     <div class="col-xs-6">
-                        <label>Indtast svarmuligheder: (alle fem behøves ikke benyttes)</label>
+                        <div class="labelonbg">Indtast svarmuligheder: (alle fem behøves ikke benyttes)</div>
                         <input class="form-control" name="q16t0a0" id="q16t0a0" placeholder="Svar 1">
                         <input class="form-control svarm" name="q16t0a1" id="q16t0a1" placeholder="Svar 2">
                         <input class="form-control svarm" name="q16t0a2" id="q16t0a2" placeholder="Svar 3">
@@ -783,16 +786,16 @@
                 </div>
                 <div class="row nondisplay" id="q16t5">
                     <div class="col-xs-6">
-                        <label>Indtast startværdi:</label>
+                        <div class="labelonbg">Indtast startværdi:</div>
                         <input class="form-control t2" name="q16t1a0" id="q16t1a0" type="number">
                         <br />
-                        <label>Indtast slutværdi:</label>
+                        <div class="labelonbg">Indtast slutværdi:</div>
                         <input class="form-control t2" name="q16t1a1" id="q16t1a1" type="number">
                     </div>
                 </div>
                 <br />
                 @*<div class="col-xs3">
-                    <label for="needanswer16">Skal besvares:</label>
+                    <div class="labelonbg" for="needanswer16">Skal besvares:</div>
                     <input type="checkbox" value="true" name="needanswer16" id="needanswer16">
                 </div>
                 <br />*@
@@ -801,11 +804,11 @@
                 <br />
                 <div class="row">
                     <div class="col-xs-9">
-                        <label for="q17nameid">Indtast spørgsmål:</label>
+                        <div class="labelonbg" for="q17nameid">Indtast spørgsmål:</div>
                         <input class="form-control" name="q17name" id="q17nameid" placeholder="Spørgsmål 18">
                     </div>
                     <div class="col-xs-3">
-                        <label for="seltype17">Vælg svartype</label>
+                        <div class="labelonbg" for="seltype17">Vælg svartype</div>
                         <select class="form-control" id="seltype17" placeholder="Svartype" name="q17type">
                             <option value="0">Kun ét svar kan vælges</option>
                             <option value="2">Rent tekstsvar</option>
@@ -815,7 +818,7 @@
                 <br />
                 <div class="row" id="q17t0">
                     <div class="col-xs-6">
-                        <label>Indtast svarmuligheder: (alle fem behøves ikke benyttes)</label>
+                        <div class="labelonbg">Indtast svarmuligheder: (alle fem behøves ikke benyttes)</div>
                         <input class="form-control" name="q17t0a0" id="q17t0a0" placeholder="Svar 1">
                         <input class="form-control svarm" name="q17t0a1" id="q17t0a1" placeholder="Svar 2">
                         <input class="form-control svarm" name="q17t0a2" id="q17t0a2" placeholder="Svar 3">
@@ -826,16 +829,16 @@
                 </div>
                 <div class="row nondisplay" id="q17t5">
                     <div class="col-xs-6">
-                        <label>Indtast startværdi:</label>
+                        <div class="labelonbg">Indtast startværdi:</div>
                         <input class="form-control t2" name="q17t1a0" id="q17t1a0" type="number">
                         <br />
-                        <label>Indtast slutværdi:</label>
+                        <div class="labelonbg">Indtast slutværdi:</div>
                         <input class="form-control t2" name="q17t1a1" id="q17t1a1" type="number">
                     </div>
                 </div>
                 <br />
                 @*<div class="col-xs3">
-                    <label for="needanswer17">Skal besvares:</label>
+                    <div class="labelonbg" for="needanswer17">Skal besvares:</div>
                     <input type="checkbox" value="true" name="needanswer17" id="needanswer17">
                 </div>
                 <br />*@
@@ -844,11 +847,11 @@
                 <br />
                 <div class="row">
                     <div class="col-xs-9">
-                        <label for="q18nameid">Indtast spørgsmål:</label>
+                        <div class="labelonbg" for="q18nameid">Indtast spørgsmål:</div>
                         <input class="form-control" name="q18name" id="q18nameid" placeholder="Spørgsmål 19">
                     </div>
                     <div class="col-xs-3">
-                        <label for="seltype18">Vælg svartype</label>
+                        <div class="labelonbg" for="seltype18">Vælg svartype</div>
                         <select class="form-control" id="seltype18" placeholder="Svartype" name="q18type">
                             <option value="0">Kun ét svar kan vælges</option>
                             <option value="2">Rent tekstsvar</option>
@@ -858,7 +861,7 @@
                 <br />
                 <div class="row" id="q18t0">
                     <div class="col-xs-6">
-                        <label>Indtast svarmuligheder: (alle fem behøves ikke benyttes)</label>
+                        <div class="labelonbg">Indtast svarmuligheder: (alle fem behøves ikke benyttes)</div>
                         <input class="form-control" name="q18t0a0" id="q18t0a0" placeholder="Svar 1">
                         <input class="form-control svarm" name="q18t0a1" id="q18t0a1" placeholder="Svar 2">
                         <input class="form-control svarm" name="q18t0a2" id="q18t0a2" placeholder="Svar 3">
@@ -869,16 +872,16 @@
                 </div>
                 <div class="row nondisplay" id="q18t5">
                     <div class="col-xs-6">
-                        <label>Indtast startværdi:</label>
+                        <div class="labelonbg">Indtast startværdi:</div>
                         <input class="form-control t2" name="q18t1a0" id="q18t1a0" type="number">
                         <br />
-                        <label>Indtast slutværdi:</label>
+                        <div class="labelonbg">Indtast slutværdi:</div>
                         <input class="form-control t2" name="q18t1a1" id="q18t1a1" type="number">
                     </div>
                 </div>
                 <br />
                 @*<div class="col-xs3">
-                    <label for="needanswer18">Skal besvares:</label>
+                    <div class="labelonbg" for="needanswer18">Skal besvares:</div>
                     <input type="checkbox" value="true" name="needanswer18" id="needanswer18">
                 </div>
                 <br />*@
@@ -887,11 +890,11 @@
                 <br />
                 <div class="row">
                     <div class="col-xs-9">
-                        <label for="q19nameid">Indtast spørgsmål:</label>
+                        <div class="labelonbg" for="q19nameid">Indtast spørgsmål:</div>
                         <input class="form-control" name="q19name" id="q19nameid" placeholder="Spørgsmål 20">
                     </div>
                     <div class="col-xs-3">
-                        <label for="seltype19">Vælg svartype</label>
+                        <div class="labelonbg" for="seltype19">Vælg svartype</div>
                         <select class="form-control" id="seltype19" placeholder="Svartype" name="q19type">
                             <option value="0">Kun ét svar kan vælges</option>
                             <option value="2">Rent tekstsvar</option>
@@ -901,7 +904,7 @@
                 <br />
                 <div class="row" id="q19t0">
                     <div class="col-xs-6">
-                        <label>Indtast svarmuligheder: (alle fem behøves ikke benyttes)</label>
+                        <div class="labelonbg">Indtast svarmuligheder: (alle fem behøves ikke benyttes)</div>
                         <input class="form-control" name="q19t0a0" id="q19t0a0" placeholder="Svar 1">
                         <input class="form-control svarm" name="q19t0a1" id="q19t0a1" placeholder="Svar 2">
                         <input class="form-control svarm" name="q19t0a2" id="q19t0a2" placeholder="Svar 3">
@@ -912,16 +915,16 @@
                 </div>
                 <div class="row nondisplay" id="q19t5">
                     <div class="col-xs-6">
-                        <label>Indtast startværdi:</label>
+                        <div class="labelonbg">Indtast startværdi:</div>
                         <input class="form-control t2" name="q19t1a0" id="q19t1a0" type="number">
                         <br />
-                        <label>Indtast slutværdi:</label>
+                        <div class="labelonbg">Indtast slutværdi:</div>
                         <input class="form-control t2" name="q19t1a1" id="q19t1a1" type="number">
                     </div>
                 </div>
                 <br />
                 @*<div class="col-xs3">
-                    <label for="needanswer19">Skal besvares:</label>
+                    <div class="labelonbg" for="needanswer19">Skal besvares:</div>
                     <input type="checkbox" value="true" name="needanswer19" id="needanswer19">
                 </div>
                 <br />*@
@@ -986,7 +989,7 @@
 
 
                 } else {
-                    alert('Navn på spørgeskema er ikke udfyldt. Spørgeskemaet skal have et navn.');
+                    alert('Navn på spørgeskema er ikke udfyldt.');
                 }
             } else {
                 // Do nothing!

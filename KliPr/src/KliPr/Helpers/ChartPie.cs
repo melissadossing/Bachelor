@@ -1,10 +1,12 @@
-﻿using MongoDB.Bson;
+﻿using KliPr.DAL;
+using KliPr.Models;
+using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace KliPr.Models
+namespace KliPr.Helpers
 {
     public class ChartPie
     {

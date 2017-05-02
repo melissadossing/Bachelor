@@ -4,12 +4,19 @@
   --blue: #256575;
   --darkblue: #12404A;
   --lightblue: #94C5D1;
-  --grey: #CCCCCC;
+  --grey: #DDD6C8;
   --darkgrey: #9E9E9E;
-
+  --midred:#990033;
+  --middark:#3F2805;
+  --midkoks:#806854;
 }
 
 html, body { height: 100%; }
+
+.largetext{
+   font-size: 1.2em;
+}
+
 
 
 body {
@@ -81,10 +88,11 @@ display:flex
 }
 
 .chartbg{
-    background-color: var(--lightblue);
-    border-radius:10px;
+    background-color: var(--midkoks);
     display: flex;
     justify-content: flex-start;
+    border-radius:5px;
+    border: 2px solid #ffffff;
 }
 
 .innerchart{
@@ -121,6 +129,14 @@ display:flex
     padding: 20px;
 }
 
+.questionillu{
+    background-color: white;
+    min-height:50px;
+    border-radius: 10px;
+    border: 2px solid var(--blue);
+    padding: 20px;
+}
+
 #thefooter{
     position: fixed;
     bottom: 0;
@@ -129,16 +145,24 @@ display:flex
 .svarm{
     margin-top: 5px;
 }
+
+.margin-bot{
+    margin-bottom: 15px;
+}
 .rc0{
-    background-color:var(--lightblue);
+    background-color:var(--midkoks);
     border-radius:5px;
     border: 2px solid #ffffff;
 }
 .rc1{
-    background-color:var(--lightblue);
+    background-color:var(--midkoks);
     border-radius:5px;
     border: 2px solid #ffffff;
     display: none;
+}
+
+.labelonbg{
+    color:white;
 }
 
 .nondisplay{
@@ -148,10 +172,17 @@ display:flex
 .thetopmargin{
      padding-top: 69px;
 }
+
+.thetopmarginsm{
+     padding-top: 33px;
+}
 .displaynone{
     display: none;
 }
 
+.smalltopmargin{
+    margin-top: 40px;
+}
 
 .glyphmed{
     font-size: 1.6em;

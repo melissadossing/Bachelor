@@ -2,17 +2,30 @@
     ViewData["Title"] = "Hvem er du?";
     int patient = (int)KliPr.Enum.Participant.Patient;
     int pårørende = (int)KliPr.Enum.Participant.Pårørende;
+    int sundhedsprof = (int)KliPr.Enum.Participant.Sundhedsprofessionel;
+    int admin = (int)KliPr.Enum.Participant.Administrator;
 }
 <head>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
 </head>
 <div class="containerwrapper minheight col-md-8 col-md-offset-2">
+    <div class="pull-right">
+        <img src="~/images/rm_lang.gif" class="img-responsive">
+    </div>
     <h3>Hvem er du?</h3>
     <form method="post" id="postform">
         <div class="radio">
+            <br />
             <label style="font-size: 16px"><input type="radio" required=required name="radioparti" value=@patient>@KliPr.Enum.Participant.Patient</label>
             <br />
+            <br />
             <label style="font-size: 16px"><input type="radio" required=required name="radioparti" value=@pårørende>@KliPr.Enum.Participant.Pårørende</label>
+            <br />
+            <br />
+            <label style="font-size: 16px"><input type="radio" required=required name="radioparti" value=@sundhedsprof>@KliPr.Enum.Participant.Sundhedsprofessionel</label>
+            <br />
+            <br />
+            <label style="font-size: 16px"><input type="radio" required=required name="radioparti" value=@admin>@KliPr.Enum.Participant.Administrator</label>
         </div>
         <div class="text-center col-xs-12">
             <br />

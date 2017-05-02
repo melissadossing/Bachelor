@@ -6,6 +6,10 @@ using MongoDB.Bson;
 using KliPr.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Text;
+using KliPr.DAL;
+using KliPr.Helpers;
+using static KliPr.Helpers.Export;
+using System;
 
 namespace KliPr.Controllers
 {
@@ -62,7 +66,7 @@ namespace KliPr.Controllers
             List<QuestionnaireListViewModel> vms = new List<QuestionnaireListViewModel>();
             foreach(var obj in questionnaires)
             {
-                QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id,obj.name,obj.active,obj.answeramount);
+                QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id,obj.name,obj.active,obj.answeramount,obj.participant);
                 vms.Add(vm);
             }
 
@@ -89,7 +93,7 @@ namespace KliPr.Controllers
             List<QuestionnaireListViewModel> vms = new List<QuestionnaireListViewModel>();
             foreach (var obj in questionnaires)
             {
-                QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id, obj.name, obj.active,obj.answeramount);
+                QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id, obj.name, obj.active,obj.answeramount,obj.participant);
                 vms.Add(vm);
             }
 
@@ -124,7 +128,7 @@ namespace KliPr.Controllers
             List<QuestionnaireListViewModel> vms = new List<QuestionnaireListViewModel>();
             foreach (var obj in questionnaires)
             {
-                QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id, obj.name, obj.active, obj.answeramount);
+                QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id, obj.name, obj.active, obj.answeramount,obj.participant);
                 vms.Add(vm);
             }
 
@@ -148,7 +152,7 @@ namespace KliPr.Controllers
             List<QuestionnaireListViewModel> vms = new List<QuestionnaireListViewModel>();
             foreach (var obj in questionnaires)
             {
-                QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id, obj.name, obj.active, obj.answeramount);
+                QuestionnaireListViewModel vm = new QuestionnaireListViewModel(obj.Id, obj.name, obj.active, obj.answeramount,obj.participant);
                 vms.Add(vm);
             }
 
@@ -170,8 +174,15 @@ namespace KliPr.Controllers
             //ObjectId selectedobjid = new ObjectId(selected);
             var selected = objds.GetById(new ObjectId(id));
 
-            return File(Encoding.UTF8.GetBytes("hello its me"),
-                 "text/csv","letsgo.csv");
+            ExportClient client = new ExportClient(new ExportCSV());
+            var formatteddata = client.Export(selected);
+
+            DateTime today = DateTime.Today;
+            string formstring = today.ToString("dd/MM/yyyy");
+
+
+            return File(Encoding.UTF8.GetBytes(formatteddata),
+                 "text/csv",selected.name + " " + formstring + ".csv");
         }
     }
 }
